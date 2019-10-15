@@ -1,0 +1,46 @@
+<%- include('../../partials/head.ejs') -%>
+<%- include('../../partials/navbar') -%>
+<div class="container-fluid py-6">
+  <div class="container">
+    <%- include('../navbar') -%>
+    <% if(locals.voyages) {  %>
+    <div class="table-responsive mb-3">
+      <table class="table table-hover" id="myTable">
+        <thead>
+          <tr>
+            <th>station</th>
+            <th>arrive</th>
+            <th>heure Depart</th>
+            <th>date Depart</th>
+            <th>prix Place</th>
+            <th>nb Places</th>
+            <th>num serie</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% voyages.forEach(u => {  %>
+          <tr>
+            <td><%= nom_station %></td>
+            <td><%= u.arrive %></td>
+            <td><%= u.heure_depart %>h</td>
+            <td><%= u.date_depart %></td>
+            <td><%= u.prix_place %> DNT</td>
+            <td><%= u.nb_places %></td>
+            <td><%= u.num_serie %></td>
+            <td>
+              <a href="/chefstation/voyages/modifier?v=<%= u.uid_voyage %>" class="btn btn-success btn-dismiss"><i
+                  class="fas fa-pen-square"></i></a>
+              <a href="/chefstation/voyages/supprimer?voyage=<%= u.uid_voyage %>" class="btn btn-danger btn-delete"><i
+                  class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <button onclick="tableToExcel('myTable')" class="btn btn-dark"><i class="fas fa-file-excel"></i> Exporter en Excel</button>
+    <% } %>
+  </div>
+</div>
+<%- include('../../partials/footer.ejs') -%>

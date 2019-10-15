@@ -1,0 +1,59 @@
+<%- include('../../partials/head.ejs') -%>
+<%- include('../../partials/navbar') -%>
+<div class="container-fluid py-6">
+  <div class="container">
+    <%- include('../navbar') -%>
+    <form action="/chefstation/voyages/modifier" method="POST" class="form-general form-bg-gray mb-3">
+      <input type="text" name="uidvoyage" id="uidvoyage" value="<%= voyage.uid_voyage %>" hidden readonly>
+
+      <div class="form-group">
+        <label for="arrive">arrive</label>
+        <input type="text" class="form-control" id="arrive" pattern="[a-zA-Z ]+" name="arrive"
+          value="<%= voyage.arrive %>" required>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="heureDepart">heure Depart</label>
+            <input type="number" class="form-control" id="heureDepart" min="0" max="24" name="heureDepart"
+              value="<%= voyage.heure_depart %>" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="dateDepart">date Depart</label>
+            <input type="date" class="form-control" id="dateDepart" name="dateDepart" value="<%= voyage.date_depart %>"
+              required>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="prixPlace">prix place</label>
+            <input type="text" class="form-control" id="prixPlace" name="prixPlace" value="<%= voyage.prix_place %>" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="nbPlaces">nb Places</label>
+            <input type="number" class="form-control" id="nbPlaces" min="0" max="9" name="nbPlaces"
+              value="<%= voyage.nb_places %>" required>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-dark" id="btn-ajout">mettre à jour voyage</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  let btnAjout = document.getElementById('btn-ajout')
+  document.getElementById('prixPlace').onkeyup = (e) => {
+    btnAjout.disabled = +(e.target.value) > 0 ? false : true
+  }
+</script>
+<%- include('../../partials/footer.ejs') -%>

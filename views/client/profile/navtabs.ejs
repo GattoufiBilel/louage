@@ -1,0 +1,14 @@
+<ul class="nav nav-tabs justify-content-end mb-3">
+  <li class="nav-item">
+    <a class="nav-link" href="/utilisateur/profile" style="background-color: #8bc34a !important; color:#fff !important">
+      <i class="fas fa-user"></i> Profile</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/utilisateur/profile/password"><i class="fas fa-unlock-alt"></i> mot de passe</a>
+  </li>
+  <% if(locals.userInfo.role === locals.Role.client) { %>
+  <li class="nav-item">
+    <a class="nav-link" href="/utilisateur/profile/desactiver"><i class="fas fa-trash-alt"></i> désactiver compte</a>
+  </li>
+  <% } %>
+</ul>

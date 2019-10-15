@@ -1,0 +1,41 @@
+<%- include('../../partials/head.ejs') -%>
+<%- include('../../partials/navbar') -%>
+<div class="container-fluid py-6">
+  <div class="container">
+    <%- include('../navbar') -%>
+    <% if(locals.stations) {  %>
+    <div class="table-responsive mb-3">
+      <table class="table table-hover" id="myTable">
+        <thead>
+          <tr>
+            <th>chef station</th>
+            <th>Email</th>
+            <th>nom station</th>
+            <th>ville</th>
+            <th>tel</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody id="all-stations">
+          <% stations.forEach(u => {  %>
+          <tr>
+            <td><%= u.nom ? u.nom : '-' %> <%= u.prenom ? u.prenom : '-' %></td>
+            <td><%= u.email %></td>
+            <td><%= u.nom_station %></td>
+            <td><%= u.ville %></td>
+            <td><%= u.station_tel %></td>
+            <td>
+              <a href="/admin/stations/modifier?nom=<%= u.nom_station %>" class="btn btn-success">M</a>
+              <a href="/admin/stations/supprimer?nom=<%= u.nom_station %>" class="btn btn-danger btn-delete"><i
+                  class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <button onclick="tableToExcel('myTable')" class="btn btn-dark"><i class="fas fa-file-excel"></i> Exporter en Excel</button>
+    <% } %>
+  </div>
+</div>
+<%- include('../../partials/footer.ejs') -%>

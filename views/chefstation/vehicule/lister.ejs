@@ -1,0 +1,38 @@
+<%- include('../../partials/head.ejs') -%>
+<%- include('../../partials/navbar') -%>
+<div class="container-fluid py-6">
+  <div class="container">
+    <%- include('../navbar') -%>
+    <% if(locals.vehicules) {  %>
+    <div class="table-responsive mb-3">
+      <table class="table table-hover" id="myTable">
+        <thead>
+          <tr>
+            <th>proprietaire</th>
+            <th>nombre de places</th>
+            <th>numero serie</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% vehicules.forEach(u => {  %>
+          <tr>
+            <td><%= u.proprietaire %></td>
+            <td><%= u.nb_places_v %></td>
+            <td><%= u.num_serie %></td>
+            <td>
+              <a href="/chefstation/vehicules/modifier?numserie=<%= u.num_serie %>" class="btn btn-success"><i
+                  class="fas fa-pen-square"></i></a>
+              <a href="/chefstation/vehicules/supprimer?numserie=<%= u.num_serie %>" class="btn btn-danger btn-delete"><i
+                  class="fas fa-trash-alt"></i></a>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <button onclick="tableToExcel('myTable')" class="btn btn-dark"><i class="fas fa-file-excel"></i> Exporter en Excel</button>
+    <% } %>
+  </div>
+</div>
+<%- include('../../partials/footer.ejs') -%>

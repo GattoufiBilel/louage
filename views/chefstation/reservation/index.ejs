@@ -1,0 +1,48 @@
+<%- include('../../partials/head.ejs') -%>
+<%- include('../../partials/navbar') -%>
+<div class="container-fluid py-6">
+  <div class="container">
+    <%- include('../navbar') -%>
+    <% if(locals.reservations) { %>
+    <div class="table-responsive mb-3">
+      <table class="table" id="myTable">
+        <thead>
+          <tr>
+            <th>nom station</th>
+            <th>arrive</th>
+            <th>heure depart</th>
+            <th>date depart</th>
+            <th>Nombre de place reservée</th>
+            <th>total</th>
+            <th>etat</th>
+            <th>action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% reservations.forEach((u, i) => {  %>
+          <tr>
+            <td><%= nom_station %></td>
+            <td><%= u.arrive %></td>
+            <td><%= u.heure_depart %> h</td>
+            <td><%= u.date_depart %></td>
+            <td><%= u.nb_place_reserver %></td>
+            <td><%= u.total_prix_places %></td>
+            <td>
+              <span class="badge badge-dark"><%= u.etat_reservation %></span>
+            </td>
+            <td>
+              <% if(u.etat_reservation === 'payer' && u.out === false) { %>
+              <a href="/chefstation/reservations/annuler?r=<%= u.uid_reservation %>" class="btn btn-warning btn-cancel"><i
+                  class="fas fa-hand-paper"></i></a>
+              <% } %>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <button onclick="tableToExcel('myTable')" class="btn btn-dark"><i class="fas fa-file-excel"></i> Exporter en Excel</button>
+    <% } %>
+  </div>
+</div>
+<%- include('../../partials/footer.ejs') -%>

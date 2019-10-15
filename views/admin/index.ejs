@@ -1,0 +1,33 @@
+<%- include('../partials/head.ejs') -%>
+<%- include('../partials/navbar') -%>
+<div class="container-fluid py-5">
+  <div class="container">
+    <%- include('navbar') -%>
+    <div class="row text-uppercase mb-5">
+      <div class="col-md-6 text-center mb-3">
+        <div class="card box-light">
+          <div class="card-body">
+            <h1><i class="fas fa-user"></i></h1>
+            <h5 class="card-title">nombre des utilisateurs</h5>
+            <h2 id="len-users"></h2>
+            <div id="chart-utilisateurs"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 text-center mb-3">
+        <div class="card box-light">
+          <div class="card-body">
+            <h1><i class="fab fa-hubspot"></i></h1>
+            <h5 class="card-title">nombre des stations</h5>
+            <h2 id="len-stations"></h2>
+            <div id="chart-stations"></div>
+          </div>
+        </div>
+      </div>
+    </div><!-- end row-->
+    <script src="/javascripts/charts/apexcharts.js" defer></script>
+    <script src="/javascripts/charts/admin-charts.js" defer></script>
+  </div>
+</div>
+<%- include('../partials/footer.ejs') -%>
