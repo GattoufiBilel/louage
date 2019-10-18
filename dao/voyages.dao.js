@@ -154,18 +154,4 @@ module.exports = VoyagesDao = {
       })
     })
   },
-  voyagesByDestAndStationAndDate (station, arrive, date) {
-    const rq = `SELECT * from ${table.name} v join stations s
-    on v.id_station = s.id_station
-    where s.nom_station = ? and v.arrive = ? and v.date_depart = ? `;
-
-    const sql = SqlString.format(rq, [station, arrive, date]);
-
-    return new Promise((resolve, reject) => {
-      db.query(sql, (err, result) => {
-        if (err) reject(err)
-        else resolve(result)
-      })
-    })
-  }
 }
