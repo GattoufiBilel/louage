@@ -6,7 +6,7 @@ btnDel.forEach(b => {
       title: "Voulez-vous vraiment supprimer?",
       text: "Une fois vous cliquez supprimer, vous ne pourrez plus le récupérer.",
       icon: "warning",
-      buttons: true,
+      buttons: ['non', 'oui'],
       dangerMode: true,
     })
       .then((willDelete) => {
