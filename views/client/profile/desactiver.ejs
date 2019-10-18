@@ -21,9 +21,7 @@
           <button type="reset" class="btn btn-danger">vider</button>
         </form>
         <div class="alert alert-danger" id="form-signin" role="alert">alter</div>
-        <% if(locals.msg) { %>
-        <div class="alert alert-primary" role="alert"><%= msg %></div>
-        <% } %>
+        <%- include('../../snackbar') -%>
       </div>
       <% } %>
     </div><!-- end row -->

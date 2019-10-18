@@ -1,6 +1,3 @@
-<% if(locals.msg) { %><div id="snackbar" class="show"><i class="fas fa-info-circle"></i> <%= msg %></div><% } %>
-<div class="error-snack"><i class="fas fa-info-circle"></i></div>
-<script defer>
-  let snackBar = document.getElementById('snackbar')
-  if (snackBar) { snackBar.onclick = () => { snackBar.classList.remove('show') } }
-</script>
+<% if(locals.msg) { %>
+<div class="alert alert-danger" role="alert"><i class="fas fa-info-circle"></i> <%= msg %></div>
+<% } %>
