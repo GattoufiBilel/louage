@@ -8,7 +8,6 @@ var vehiculeDao = require('../../dao/vehicules.dao')
 var stationDao = require('../../dao/stations.dao')
 
 router.get('/', [checkUserConnected, checkAdminOrChef], function (req, res) {
-
     stationDao.getStationByChef(req.session.userInfo.email)
         .then(r => {
             req.session.chefStationInfo = r[0]
@@ -42,6 +41,14 @@ router.get('/voyages.json', [checkUserConnected, checkAdminOrChef], function (re
             res.status(200).json(voyages)
         })
         .catch(e => { res.status(404).json(voyages) })
+})
+
+router.get('/reservations.json', [checkUserConnected, checkAdminOrChef], function (req, res) {
+    reservDao.getAllReservationsByStation(req.session.chefStationInfo.id_station)
+        .then(function (resvs) {
+            res.status(200).json(resvs)
+        })
+        .catch(e => { res.status(404).json(resvs) })
 })
 
 module.exports = router

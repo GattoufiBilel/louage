@@ -8,11 +8,12 @@
       <table class="table" id="myTable">
         <thead>
           <tr>
-            <th>nom station</th>
-            <th>arrive</th>
-            <th>heure depart</th>
+            <th>station de depart</th>
+            <th>station d'arrivé</th>
+            <th>h° depart</th>
+            <th>h° arrivée</th>
             <th>date depart</th>
-            <th>Nombre de place reservée</th>
+            <th>n° reservées</th>
             <th>total</th>
             <th>etat</th>
             <th>action</th>
@@ -24,6 +25,7 @@
             <td><%= nom_station %></td>
             <td><%= u.arrive %></td>
             <td><%= u.heure_depart %> h</td>
+            <td><%= u.heure_arrive %> h</td>
             <td><%= u.date_depart %></td>
             <td><%= u.nb_place_reserver %></td>
             <td><%= u.total_prix_places %></td>
@@ -32,8 +34,8 @@
             </td>
             <td>
               <% if(u.etat_reservation === 'payer' && u.out === false) { %>
-              <a href="/chefstation/reservations/annuler?r=<%= u.uid_reservation %>" class="btn btn-warning btn-cancel"><i
-                  class="fas fa-hand-paper"></i></a>
+              <a href="/chefstation/reservations/annuler?r=<%= u.uid_reservation %>"
+                class="btn btn-warning btn-cancel"><i class="fas fa-hand-paper"></i></a>
               <% } %>
             </td>
           </tr>
@@ -41,7 +43,8 @@
         </tbody>
       </table>
     </div>
-    <button onclick="tableToExcel('myTable')" class="btn btn-dark"><i class="fas fa-file-excel"></i> Exporter en Excel</button>
+    <button onclick="tableToExcel('myTable')" class="btn btn-dark"><i class="fas fa-file-excel"></i> Exporter en
+      Excel</button>
     <% } %>
   </div>
 </div>

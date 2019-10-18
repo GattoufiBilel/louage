@@ -53,7 +53,7 @@ module.exports = ReservationsDao = {
     const rq = `SELECT * from ${table.name} r join voyages v ON r.uid_voyage = v.uid_voyage 
     WHERE v.id_station = ? `;
 
-    const sql = SqlString.format(rq, idStation);
+    const sql = SqlString.format(rq, idStation)
 
     return new Promise((resolve, reject) => {
       db.query(sql, (err, result) => {

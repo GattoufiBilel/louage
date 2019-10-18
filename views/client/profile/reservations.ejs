@@ -8,11 +8,12 @@
       <table class="table" id="myTable">
         <thead>
           <tr>
-            <th>station</th>
-            <th>arrive</th>
-            <th>heure depart</th>
+            <th>station de depart</th>
+            <th>station d'arrivé</th>
+            <th>h° depart</th>
+            <th>h° arrivée</th>
             <th>date depart</th>
-            <th>nombre place</th>
+            <th>n° place</th>
             <th>total</th>
             <th>etat</th>
             <th>action</th>
@@ -24,6 +25,7 @@
             <td><%= u.nom_station %></td>
             <td><%= u.arrive %></td>
             <td><%= u.heure_depart %> h</td>
+            <td><%= u.heure_arrive %> h</td>
             <td><%= locals.formatDate(u.date_depart) %></td>
             <td><%= u.nb_place_reserver %></td>
             <td><%= u.total_prix_places %></td>
