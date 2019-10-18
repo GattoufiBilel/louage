@@ -41,12 +41,12 @@
               <span> <%= v.arrive %></span>
             </h3>
 
-            <div class="v-details">
-              <div class="btn btn-dark"><i class="fas fa-calendar-week"></i> <%= locals.formatDate(v.date_depart) %>
-              </div>
-              <div class="btn btn-light"><i class="fas fa-clock"></i> <%= v.heure_depart %>h -> <%= v.heure_arrive %>h
-              </div>
-              <div class="btn btn-light"><i class="fas fa-hourglass-start"></i><%= +v.heure_arrive - +v.heure_depart %>h</div>
+            <div>
+              <span class="mr-3"><i class="fas fa-calendar-week"></i> <%= locals.formatDate(v.date_depart) %>
+              </span>
+              <span class="mr-3"><i class="fas fa-clock"></i> <%= v.heure_depart %>h <%= v.heure_arrive %>h
+              </span>
+              <span><i class="fas fa-hourglass-start"></i> <%= +v.heure_arrive - +v.heure_depart %>h</span>
             </div>
             <div class="v-details mt-3">
               <div class="btn btn-success btn-block btn-lg text-left">
