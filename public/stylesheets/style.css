@@ -399,39 +399,3 @@ textarea {
     text-align: center;
   }
 }
-
-.but {
-  display: inline-block;
-  font-weight: 600;
-  text-align: center;
-  vertical-align: middle;
-  background-color: transparent;  
-  padding: 7px 40px;
-  font-size: 14px;
-  line-height: 1.5;
-  border-radius: .25rem;  
-
-  text-transform: uppercase;  
-  text-decoration: none;
-  cursor: pointer;    
-  overflow: hidden;  
-  position: relative;
-}
-
-.button1 { color: #ffffff !important; border: 1px solid #ffffff;  }
-    
-.button1::before {    
-  width: 102%;
-  height: 0;  
-  background-color: #28a745;
-  content: "";
-  position: absolute;  
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  transition: all 0.5s ease;
-}
-
-.button1:hover {     border: 1px solid #28a745; color: #ffffff !important; }
-.button1:hover::before { height: 100%; }

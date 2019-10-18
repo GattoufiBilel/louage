@@ -1,33 +1,63 @@
 <%- include('partials/head.ejs') -%>
 <%- include('partials/navbar') -%>
+<style>
+  .search-form {
+    background-color: #8bd589;
+    padding: 30px;
+    border-radius: 5px;
+  }
+
+  .search-form label {
+    color: #fff;
+  }
+
+  .center-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+</style>
 <div class="jumbotron container-v50">
   <div class="container mb-0 py-5">
     <div class="row">
-      <div class="col-md-6 mb-3">
+      <div class="col-md-6 center-flex mb-3">
         <h1 class="display-4 flipInX">BIENVENUE</h1>
         <p class="mb-5" style="color: #fff">
-          Louage partout, tout le temps
-          parce que votre voyage ne s’arrête pas, nous sommes toujours là pour vous.
-          Notre service est simple et rapide.
-          Il est facile de trouver vos voyages
-          et des cartes geographique indéquantes.
+          Louage partout, tout le temps parce que votre voyage ne s’arrête pas,
+          nous sommes toujours là pour vous.Notre service est simple et rapide.
+          Il est facile de trouver vos voyages et des cartes geographique indéquantes.
         </p>
-        <form action="/voyages" class="w-100 form-row" method="POST">
+      </div>
+      <div class="col-md-6">
+        <form action="/voyages" class="search-form" method="POST">
           <% if(locals.stations) { %>
-          <div class="col-md-8">
+          <div class="form-group">
+            <label for="date">station de départ</label>
             <select class="form-control" id="nomstation" name="nomstation">
               <% stations.forEach(s => { %>
               <option value="<%= s.nom_station %>"><%= s.nom_station %></option>
               <% }) %>
             </select>
           </div>
-          <% } %>
-          <div class="col-md-4">
-            <button type="submit" class="but button1 btn-block">rechercher</button>
+
+          <div class="form-group">
+            <label for="date">station d'arrivée</label>
+            <select class="form-control" id="arrive" name="arrive">
+              <% stations.forEach(s => { %>
+              <option value="<%= s.nom_station %>"><%= s.nom_station %></option>
+              <% }) %>
+            </select>
           </div>
+
+          <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" class="form-control" name="date" placeholder="Entrer date">
+          </div>
+          <% } %>
+          <button type="submit" class="btn btn-success btn-block">rechercher</button>
         </form>
       </div>
-      <div class="col-md-6"><%- include('partials/carousel') -%></div>
+
     </div>
   </div>
 </div>
