@@ -4,7 +4,7 @@ var { checkUserConnected, checkUserRoleChef } = require('../../middleware/author
 var vehiculeDao = require('../../dao/vehicules.dao')
 var Vehicule = require('../../model/Vehicule.model')
 
-router.get('/', [checkUserConnected, checkUserRoleChef], (req, res) => {
+router.get('/', (req, res) => {
   vehiculeDao.getVehicules()
     .then(vehicules => {
       res.render('chefstation/vehicule/lister', { vehicules })

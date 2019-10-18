@@ -7,47 +7,27 @@
     <form action="/chefstation/voyages/ajout" method="POST" class="form-general form-bg-gray mb-3">
       <input type="text" class="form-control" name="id_station" value="<%= id_station %>" hidden readonly>
 
-      <div class="form-group">
-        <label>Nom Station</label>
-        <input type="text" class="form-control" value="<%= nom_station %>" disabled>
-      </div>
-
-      <div class="form-group">
-        <label>Vehicules</label>
-        <input type="text" class="form-control" id="vehicule" name="vehicule" list="vehicules"
-          placeholder="Entrer vehicule" required>
-        <datalist id="vehicules">
-          <% locals.vehicules.forEach(v => { %><option value="<%= v.num_serie %>"><% }) %>
-        </datalist>
-      </div>
-
-      <div class="form-group">
-        <label for="arrive">arrive</label>
-        <input type="text" class="form-control" id="arrive" name="arrive" pattern="[a-zA-Z ]+"
-          placeholder="Entrer arrive" required>
-      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Station de depart</label>
+            <input type="text" class="form-control" value="<%= nom_station %>" disabled>
+          </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="arrive">station d'arrivé</label>
+                <select class="form-control" id="arrive" name="arrive">
+                  <% stations.forEach(s=> { %><option value="<%= s.nom_station %>"><%= s.nom_station %></option><% }) %>
+                </select>
+              </div>
+        </div>
+      </div>      
 
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <label for="heureDepart">heure Depart</label>
-            <input type="number" class="form-control" id="heureDepart" name="heureDepart" min="1" max="24"
-              placeholder="Entrer l'heure de depart" required>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="dateDepart">date Depart</label>
-            <input type="date" class="form-control" id="dateDepart" name="dateDepart" placeholder="Entrer date depart"
-              required>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="prixPlace">prix place</label>
+            <label for="prixPlace">prix de place</label>
             <input type="text" class="form-control" id="prixPlace" name="prixPlace" placeholder="Enter prix place"
               required>
           </div>
@@ -59,6 +39,39 @@
               placeholder="Enter nombre de places" required>
           </div>
         </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="heureDepart">heure de Depart</label>
+              <input type="number" class="form-control" id="heureDepart" name="heureDepart" min="1" max="24"
+                placeholder="Entrer l'heure de depart" required>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="heureArrive">heure d'arrivé</label>
+              <input type="number" class="form-control" id="heureArrive" name="heureArrive" min="1" max="24"
+                placeholder="Entrer l'heure d'arrivé" required>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="dateDepart">date de Depart</label>
+              <input type="date" class="form-control" id="dateDepart" name="dateDepart" placeholder="Entrer date depart"
+                required>
+            </div>
+          </div>
+        </div>
+
+      <div class="form-group">
+        <label>Vehicules</label>
+        <input type="text" class="form-control" id="vehicule" name="vehicule" list="vehicules"
+          placeholder="Entrer vehicule" required>
+        <datalist id="vehicules">
+          <% locals.vehicules.forEach(v => { %><option value="<%= v.num_serie %>"><% }) %>
+        </datalist>
       </div>
 
       <button type="submit" class="btn btn-dark" id="btn-ajout">Ajouter voyage</button>

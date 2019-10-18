@@ -2,7 +2,6 @@ document.getElementById('btn-export').onclick = () => {
   var divToPrint = document.getElementById('ticket')
   var newWin = window.open('', 'Print-Window')
   newWin.document.open()
-
   newWin.document.write(`
   <html><body onload="window.print()">
   <link rel="stylesheet" href="/stylesheets/bootstrap.css" />
@@ -13,8 +12,7 @@ document.getElementById('btn-export').onclick = () => {
     .col-md-8 iframe { max-height: 190px }
   </style>
   ${divToPrint.innerHTML}
-  </body></html>
-`)
-  newWin.document.close();
+  </body></html>`)
+  newWin.document.close()
   setTimeout(function () { newWin.close() }, 10)
 }

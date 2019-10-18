@@ -1,6 +1,7 @@
 var router = require('express').Router()
 var { checkUserConnected, checkUserRoleChef } = require('../../middleware/authorisation')
 
+var stationDao = require('../../dao/stations.dao')
 var vehiculeDao = require('../../dao/vehicules.dao')
 var voyagesDao = require('../../dao/voyages.dao')
 var Voyage = require('../../model/Voyage.model')
@@ -20,20 +21,16 @@ router.get('/', [checkUserConnected, checkUserRoleChef], (req, res) => {
 
 router.get('/ajout', [checkUserConnected, checkUserRoleChef], (req, res) => {
   let { id_station, nom_station } = req.session.chefStationInfo
-
-  vehiculeDao.getVehicules()
-    .then(result => {
-      res.render('chefstation/voyage/ajout', { vehicules: result, id_station, nom_station })
+  Promise.all([vehiculeDao.getVehicules(), stationDao.getAllStations()])
+    .then(v => {
+      res.render('chefstation/voyage/ajout', { vehicules: v[0], stations: v[1], id_station, nom_station })
     })
-    .catch(v => {
-      res.redirect('/404')
-    })
+    .catch(e => { res.redirect('/404') })
 })
 
 router.post('/ajout', [checkUserConnected, checkUserRoleChef], (req, res) => {
-  let { id_station, vehicule, arrive, heureDepart, dateDepart, prixPlace, nbPlaces } = req.body
-  let newVoyage = new Voyage(uniqid(), arrive, heureDepart, dateDepart, prixPlace, nbPlaces, id_station, vehicule)
-
+  let { id_station, vehicule, arrive, heureDepart, heureArrive, dateDepart, prixPlace, nbPlaces } = req.body
+  let newVoyage = new Voyage(uniqid(), arrive, heureDepart, heureArrive, dateDepart, prixPlace, nbPlaces, id_station, vehicule)
   voyagesDao.addVoyage(newVoyage)
     .then(r => {
       res.redirect('/chefstation/voyages')
@@ -56,8 +53,8 @@ router.get('/modifier', [checkUserConnected, checkUserRoleChef], (req, res) => {
 })
 
 router.post('/modifier', [checkUserConnected, checkUserRoleChef], (req, res) => {
-  let { uidvoyage, arrive, heureDepart, dateDepart, prixPlace, nbPlaces } = req.body
-  let newVoyage = new Voyage(uidvoyage, arrive, heureDepart, dateDepart, prixPlace, nbPlaces, '', '')
+  let { uidvoyage, arrive, heureDepart, heureArrive, dateDepart, prixPlace, nbPlaces } = req.body
+  let newVoyage = new Voyage(uidvoyage, arrive, heureDepart, heureArrive, dateDepart, prixPlace, nbPlaces, '', '')
   voyagesDao.updateVoyage(newVoyage)
     .then(r => { res.redirect('/chefstation/voyages') })
     .catch(e => { res.redirect('/chefstation/voyages') })

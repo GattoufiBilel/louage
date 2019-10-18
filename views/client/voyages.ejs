@@ -32,7 +32,8 @@
       <div class="col-md-6 mb-3">
 
         <% voyages.forEach(v => { %>
-        <a href="/reservations?v=<%= v.uid_voyage %>" class="card text-uppercase btn-link" style="color: #000 !important;text-decoration: none">
+        <a href="/reservations?v=<%= v.uid_voyage %>" class="card text-uppercase btn-link"
+          style="color: #000 !important;text-decoration: none">
           <div class="card-body">
             <h3 class="card-title">
               <i class="fas fa-road"></i> De <span> <%= v.nom_station  %> <i class="fas fa-arrow-circle-right"
@@ -41,24 +42,27 @@
             </h3>
 
             <div class="v-details">
-              <div class="btn btn-light"><i class="fas fa-calendar-week"></i> <%= locals.formatDate(v.date_depart) %></div>
-              <div class="btn btn-light"><i class="fas fa-clock"></i> <%= v.heure_depart %>h</div>
-              <div class="btn btn-success"><i class="fas fa-coins"></i> <%= v.prix_place %> DNT</div>
+              <div class="btn btn-dark"><i class="fas fa-calendar-week"></i> <%= locals.formatDate(v.date_depart) %>
+              </div>
+              <div class="btn btn-light"><i class="fas fa-clock"></i> <%= v.heure_depart %>h -> <%= v.heure_arrive %>h
+              </div>
+              <div class="btn btn-light"><i class="fas fa-hourglass-start"></i><%= +v.heure_arrive - +v.heure_depart %>h</div>
+            </div>
+            <div class="v-details mt-3">
+              <div class="btn btn-success btn-block btn-lg text-left">
+                selectionner ce trajet <span style="float: right;"><i class="fas fa-coins"></i> <%= v.prix_place %>DNT</span>
+              </div>
             </div>
           </div>
         </a>
         <% }) %>
       </div>
 
-      <div class="col-md-6 mb-3" style="display: flex;
-      justify-content: center;
-      align-items: center;">
-
+      <div class="col-md-6 mb-3" style="display: flex;justify-content: center;align-items: center;">
         <iframe id='mapcanvas'
           src='https://maps.google.com/maps?q=<%= encodeURIComponent(locals.voyages[0].nom_station) %>&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=&amp;output=embed'
           frameborder='0' scrolling='no' marginheight='0' marginwidth='0'>
         </iframe>
-
       </div>
 
       <% } else { %>

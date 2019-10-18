@@ -7,6 +7,7 @@ const table = {
   uidVoyage: 'uid_voyage',
   arrive: 'arrive',
   heureDepart: 'heure_depart',
+  heureArrive: 'heure_arrive',
   dateDepart: 'date_depart',
   prixPlace: 'prix_place',
   nbPlaces: 'nb_places',
@@ -18,33 +19,30 @@ const table = {
 module.exports = VoyagesDao = {
 
   addVoyage (Voyage) {
-    let { uidVoyage, arrive, heureDepart, dateDepart, prixPlace, nbPlaces, idStation, numSerieVehicule } = Voyage
+    let { uidVoyage, arrive, heureDepart, heureArrive, dateDepart, prixPlace, nbPlaces, idStation, numSerieVehicule } = Voyage
 
     return knex(table.name).insert({
-      uid_voyage: uidVoyage,
-      arrive,
-      heure_depart: heureDepart,
-      date_depart: dateDepart,
-      prix_place: prixPlace,
-      nb_places: nbPlaces,
+      uid_voyage: uidVoyage, arrive,
+      heure_depart: heureDepart, heure_arrive: heureArrive, date_depart: dateDepart,
+      prix_place: prixPlace, nb_places: nbPlaces,
       id_station: idStation,
       num_serie_vehicule: numSerieVehicule,
       timestamp_voyage: new Date().toISOString()
     })
   },
   updateVoyage (Voyage) {
-    let { uidVoyage, arrive, heureDepart, dateDepart, prixPlace, nbPlaces } = Voyage
+    let { uidVoyage, arrive, heureDepart, heureArrive, dateDepart, prixPlace, nbPlaces } = Voyage
 
     const rq = `update ${table.name} 
     set ${table.arrive} = ? ,
-        ${table.heureDepart} = ?,
+        ${table.heureDepart} = ?,${table.heureArrive} = ?,
         ${table.dateDepart} = ?,
         ${table.prixPlace} = ?,
         ${table.nbPlaces} = ?
     where ${table.uidVoyage} = ? `;
 
     const sql = SqlString.format(rq,
-      [arrive, heureDepart, dateDepart, prixPlace, nbPlaces, uidVoyage]
+      [arrive, heureDepart, heureArrive, dateDepart, prixPlace, nbPlaces, uidVoyage]
     );
 
     return new Promise((resolve, reject) => {

@@ -18,26 +18,33 @@
         <div class="form-general form-bg-gray">
 
           <div class="form-group">
-            <label>nom station</label>
+            <label>station de départ</label>
             <input type="text" class="form-control" value="<%= voyage.nom_station %>" disabled>
           </div>
 
           <div class="form-group">
-            <label>arrive</label>
+            <label>station d'arrivé</label>
             <input type="text" class="form-control" value="<%= voyage.arrive %>" disabled>
           </div>
 
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
-                <label>heure de depart</label>
-                <input type="number" class="form-control" value="<%= voyage.heure_depart %>" disabled>
+                <label>heure de départ</label>
+                <input type="text" class="form-control" value="<%= voyage.heure_depart %>" disabled>
               </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
-                <label>date de depart</label>
+                <label>heure d'arrivée</label>
+                <input type="text" class="form-control" value="<%= voyage.heure_arrive %>" disabled>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>date de départ</label>
                 <input type="text" class="form-control" value="<%= voyage.date_depart %>" disabled>
               </div>
             </div>
@@ -51,12 +58,12 @@
 
           <div class="row">
             <div class="col-md-6">
-              <label>Prix place</label>
+              <label>Prix d'une place</label>
               <input type="text" class="form-control display-3" value="<%= voyage.prix_place %> DNT" required disabled>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>total</label>
+                <label>prix total à payer</label>
                 <input type="text" class="form-control display-3" value="<%= total %>" required disabled>
               </div>
             </div>
@@ -108,7 +115,7 @@
           </div>
           <div class="g-recaptcha mb-3" data-callback="imNotARobot"
             data-sitekey="6LdptrsUAAAAAHpWDCbQrgpSyPEJ46Jbu5_hPCih"></div>
-          <button type="submit" class="btn btn-dark" id="btn-payment">verifier et payer</button>
+          <button type="submit" class="btn btn-dark" id="btn-payment">vérifier et payer</button>
           <button type="reset" class="btn btn-danger">vider</button>
         </form>
       </div>

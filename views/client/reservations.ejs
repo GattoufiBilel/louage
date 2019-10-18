@@ -14,72 +14,80 @@
 <div class="container-fluid py-6">
   <div class="container">
     <div class="row">
-  
+
       <div class="col-md-6 mb-3">
         <form action="/reservations/ajout" method="POST" class="form-general form-bg-gray mb-3">
-  
+
           <input type="text" name="uidvoyage" id="uidvoyage" value="<%= voyage.uid_voyage %>" hidden readonly>
-  
+
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label>station</label>
+                <label>station de départ</label>
                 <input type="text" class="form-control" value="<%= voyage.nom_station %>" required disabled>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>arrive</label>
+                <label>station d'arrivé</label>
                 <input type="text" class="form-control" value="<%= voyage.arrive %>" required disabled>
               </div>
             </div>
           </div>
-  
+
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="form-group">
-                <label>heure de depart</label>
+                <label>heure de départ</label>
                 <input type="text" class="form-control" value="<%= voyage.heure_depart %>" disabled>
               </div>
             </div>
-  
-            <div class="col-md-6">
+
+            <div class="col-md-4">
               <div class="form-group">
-                <label>date de depart</label>
+                <label>heure d'arrivée</label>
+                <input type="text" class="form-control" value="<%= voyage.heure_arrive %>" disabled>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>date de départ</label>
                 <input type="text" class="form-control" value="<%= voyage.date_depart %>" disabled>
               </div>
             </div>
           </div>
-  
+
           <div class="form-group">
             <label for="nbplaces" class="d-flex justify-content-between">
               nombre de places
               <span class="badge badge-pill badge-danger">disponibles <%= voyage.nb_places %></span>
             </label>
             <input type="number" name="nbplacesv" id="nbplacesv" value="<%= voyage.nb_places %>" hidden readonly>
-  
-            <input type="number" class="form-control" min="1" max="<%= voyage.nb_places %>" 
-            id="nbplaces" name="nbplaces" placeholder="Enter nombre places" required>
+
+            <input type="number" class="form-control" min="1" max="<%= voyage.nb_places %>" id="nbplaces"
+              name="nbplaces" placeholder="Enter nombre places" required>
           </div>
-  
+
           <div class="row">
             <div class="col-md-6">
-              <label>Prix place</label>
+              <label>Prix d'une place</label>
               <input type="text" class="form-control display-3" value="<%= voyage.prix_place %> DNT" required readonly>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>total</label>
-                <input type="text" class="form-control display-3" id="total" name="total" value="0 DNT" required readonly>
+                <label>prix total à payer</label>
+                <input type="text" class="form-control display-3" id="total" name="total" value="0 DNT" required
+                  readonly>
               </div>
             </div>
           </div>
-  
+
           <button type="submit" class="btn btn-dark">confirmer</button>
           <button type="reset" class="btn btn-danger">vider</button>
         </form>
       </div>
-  
+
       <div class="col-md-6">
         <iframe id='mapcanvas'
           src='https://maps.google.com/maps?q=<%= encodeURIComponent(voyage.arrive) %>&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=&amp;output=embed'
@@ -87,7 +95,7 @@
         </iframe>
       </div>
     </div><!-- end row -->
-  
+
   </div>
 </div>
 <% } %>

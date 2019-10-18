@@ -87,10 +87,10 @@ function previewImage (event) {
 }
 
 /** alert confirm before delete */
-let btnDelete = document.querySelectorAll('.btn-delete');
-btnDelete.forEach(b => {
-  b.onclick = () => confirm('voulez-vous vraiment supprimer ?')
-})
+// let btnDelete = document.querySelectorAll('.btn-delete');
+// btnDelete.forEach(b => {
+//   b.onclick = () => confirm('voulez-vous vraiment supprimer ?')
+// })
 
 let btnCancel = document.querySelectorAll('.btn-cancel');
 btnCancel.forEach(b => {

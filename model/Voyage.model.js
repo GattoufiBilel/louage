@@ -2,8 +2,9 @@ module.exports = class Voayge {
   constructor (
     uidVoyage, 
     arrive,
-    heureDepart, 
-    dateDepart, 
+    heureDepart,
+    heureArrive, 
+    dateDepart,   
     prixPlace,
     nbPlaces, 
     idStation, 
@@ -12,6 +13,7 @@ module.exports = class Voayge {
     this.uidVoyage = uidVoyage || ''
     this.arrive = arrive.toLowerCase() || ''
     this.heureDepart = heureDepart || ''
+    this.heureArrive = heureArrive || ''
     this.dateDepart = dateDepart || ''
     this.prixPlace = prixPlace || ''
     this.nbPlaces = nbPlaces || ''

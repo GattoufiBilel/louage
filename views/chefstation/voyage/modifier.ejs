@@ -7,22 +7,29 @@
       <input type="text" name="uidvoyage" id="uidvoyage" value="<%= voyage.uid_voyage %>" hidden readonly>
 
       <div class="form-group">
-        <label for="arrive">arrive</label>
+        <label for="arrive">statin d'arrivé</label>
         <input type="text" class="form-control" id="arrive" pattern="[a-zA-Z ]+" name="arrive"
-          value="<%= voyage.arrive %>" required>
+          value="<%= voyage.arrive %>" required readonly>
       </div>
 
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="form-group">
-            <label for="heureDepart">heure Depart</label>
+            <label for="heureDepart">heure de Depart</label>
             <input type="number" class="form-control" id="heureDepart" min="0" max="24" name="heureDepart"
               value="<%= voyage.heure_depart %>" required>
           </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
+            <div class="form-group">
+              <label for="heureArrive">heure d'arrivé</label>
+              <input type="number" class="form-control" id="heureArrive" min="0" max="24" name="heureArrive"
+                value="<%= voyage.heure_arrive %>" required>
+            </div>
+          </div>
+        <div class="col-md-4">
           <div class="form-group">
-            <label for="dateDepart">date Depart</label>
+            <label for="dateDepart">date de Depart</label>
             <input type="date" class="form-control" id="dateDepart" name="dateDepart" value="<%= voyage.date_depart %>"
               required>
           </div>
@@ -38,7 +45,7 @@
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="nbPlaces">nb Places</label>
+            <label for="nbPlaces">nombre de Places</label>
             <input type="number" class="form-control" id="nbPlaces" min="0" max="9" name="nbPlaces"
               value="<%= voyage.nb_places %>" required>
           </div>
