@@ -134,9 +134,7 @@
         let d = datexp.value.split('/')
         btnPayment.disabled = +d[1] > 14 && +d[0] > 0 && +d[0] < 13 ? false : true
       }
-      else {
-        btnPayment.disabled = true
-      }
+      else { btnPayment.disabled = true }
     }
   }
 </script>

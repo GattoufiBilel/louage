@@ -13,31 +13,21 @@ fetch('/chefstation/voyages.json')
     for (let i in voyageParMoi) {
       objReserv.push({ n: voyageParMoi[i], m: i, indx: months.indexOf(i) })
     }
-    objReserv.sort((i, j) => i.indx - j.indx).unshift({ n: 0, m: 0, indx: 0 });
+    objReserv.sort((i, j) => i.indx - j.indx);
 
     var options = {
-      chart: {
-        height: 350,
-        type: 'line',
-        zoom: {
-          enabled: false
-        }
-      },
-      series: [{ name: "nombre des voyages par mois", data: objReserv.map(v => v.n) }],
-      dataLabels: { enabled: true },
-      stroke: { curve: 'straight' },
-      title: {
-        text: 'nombre des voyages par mois', align: 'center'
-      },
-      colors: ['#28a745'],
-      grid: {
-        row: { borderColor: '#e7e7e7', colors: ['#f3f3f3', 'transparent'], opacity: 0.5 },
-      },
-      xaxis: { categories: objReserv.map(v => v.m) }
+      chart: { width: 350, type: 'pie', },
+      labels: objReserv.map(v => v.m),
+      series: objReserv.map(v => v.n),
+      responsive: [{
+        breakpoint: 480,
+        options: { chart: { width: 200 }, legend: { position: 'Nombre des voyages par mois' } }
+      }]
     }
-    new ApexCharts(document.getElementById("voyages-chart"), options).render()
+    var vChart = document.getElementById("voyages-chart")
+    new ApexCharts(vChart, options).render()
   })
-  .catch(error => { })
+  .catch(e => { })
 
 
 fetch('/chefstation/reservations.json')
@@ -54,25 +44,18 @@ fetch('/chefstation/reservations.json')
     objReserv.sort((i, j) => i.indx - j.indx).unshift({ n: 0, m: 0, indx: 0 });
 
     var options = {
-      chart: {
-        height: 350,
-        type: 'line',
-        zoom: {
-          enabled: false
-        }
-      },
+      chart: { height: 350, type: 'line', zoom: { enabled: false } },
       series: [{ name: "nombre des reservations par mois", data: objReserv.map(v => v.n) }],
       dataLabels: { enabled: true },
       stroke: { curve: 'straight' },
-      title: {
-        text: 'nombre des reservations par mois', align: 'center'
-      },
+      title: { text: 'nombre des reservations par mois', align: 'center' },
       colors: ['#28a745'],
       grid: {
         row: { borderColor: '#e7e7e7', colors: ['#f3f3f3', 'transparent'], opacity: 0.5 },
       },
       xaxis: { categories: objReserv.map(v => v.m) }
     }
-    new ApexCharts(document.getElementById("revs-chart"), options).render()
+    var rvChart = document.getElementById("revs-chart")
+    new ApexCharts(rvChart, options).render()
   })
-  .catch(error => { })
+  .catch(e => { })

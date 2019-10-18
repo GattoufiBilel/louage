@@ -54,9 +54,7 @@ routes.forEach(r => { app.use(r.path, require(r.source)) })
 app.get('*', (req, res) => { res.redirect('/404') })
 
 // error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-})
+app.use(function (req, res, next) { next(createError(404)) })
 
 app.use(function (err, req, res, next) {
   res.locals.message = err.message;

@@ -15,7 +15,7 @@ module.exports = function checkValidEmail (req, res, next) {
         res.render('login', { msg: 'Ce compte n\'existe pas!' })
       }
     })
-    .catch(error => {
+    .catch(e => {
       res.render('login', { msg: 'vous devez s\'inscire avant de se connecter!' })
     })
 }
