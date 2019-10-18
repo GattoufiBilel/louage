@@ -41,12 +41,8 @@ router.post('/ajout', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
 router.get('/supprimer', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
   let nomStation = req.query.nom
   stationDao.deletStation(nomStation.trim())
-    .then(r => { res.redirect('/admin/stations') })
-    .catch(e => { res.redirect('/admin/stations') })
-})
-
-router.post('/supprimer', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
-  res.render('admin/station/ajout')
+    .then(r => { res.status(200).json({ msg: 'Une station a été bien supprimer' }) })
+    .catch(e => { res.status(404).json({ msg: 'vous ne pouvez pas supprimer cette station' }) })
 })
 
 router.get('/modifier', [checkUserConnected, checkUserRoleAdmin], (req, res) => {

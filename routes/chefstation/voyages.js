@@ -42,8 +42,8 @@ router.post('/ajout', [checkUserConnected, checkUserRoleChef], (req, res) => {
 
 router.get('/supprimer', [checkUserConnected, checkUserRoleChef], function (req, res) {
   voyagesDao.deletVoyage(req.query.voyage)
-    .then(r => { res.status(200).json({msg:'voyage supprimé'}) })
-    .catch(e => { res.status(200).json({msg:'erreur de suppression'}) })
+    .then(r => { res.status(200).json({ msg: 'Un voyage a été bien supprimer' }) })
+    .catch(e => { res.status(404).json({ msg: 'vous ne pouvez pas supprimer ce voyage' }) })
 })
 
 router.get('/modifier', [checkUserConnected, checkUserRoleChef], (req, res) => {

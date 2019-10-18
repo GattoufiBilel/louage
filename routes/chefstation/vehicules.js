@@ -33,12 +33,8 @@ router.post('/ajout', [checkUserConnected, checkUserRoleChef], (req, res) => {
 
 router.get('/supprimer', [checkUserConnected, checkUserRoleChef], function (req, res) {
   vehiculeDao.deletVehicule(req.query.numserie)
-    .then(result => {
-      res.redirect('/chefstation/vehicules')
-    })
-    .catch(error => {
-      res.redirect('/404')
-    })
+  .then(r => { res.status(200).json({ msg: 'Une véhicule a été bien supprimer' }) })
+  .catch(e => { res.status(404).json({ msg: 'vous ne pouvez pas supprimer cette véhicule' }) })
 })
 
 router.get('/modifier', [checkUserConnected, checkUserRoleChef], function (req, res) {

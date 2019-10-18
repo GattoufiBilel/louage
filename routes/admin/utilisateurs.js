@@ -51,12 +51,8 @@ router.post('/modifier', [checkUserConnected, checkUserRoleAdmin], (req, res) =>
 router.get('/supprimer', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
   let { email } = req.query
   utilisateurDao.deleteUserByEmail(email)
-    .then(r => {
-      res.redirect('/admin/utilisateurs')
-    })
-    .catch(e => {
-      res.redirect('/admin/utilisateurs')
-    })
+  .then(r => { res.status(200).json({ msg: 'Un utilisateur a été bien supprimer' }) })
+  .catch(e => { res.status(404).json({ msg: 'vous ne pouvez pas supprimer cet utilisateur' }) })
 })
 
 module.exports = router

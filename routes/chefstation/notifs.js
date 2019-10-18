@@ -59,12 +59,8 @@ router.post('/modifier', [checkUserConnected, checkUserRoleChef], (req, res) => 
 router.get('/supprimer', [checkUserConnected, checkUserRoleChef], (req, res) => {
   let { notif } = req.query
   notifsDao.deletNotification(notif)
-    .then(result => {
-      res.redirect('/chefstation/notifications')
-    })
-    .catch(e => {
-      res.render('chefstation/notifications')
-    })
+  .then(r => { res.status(200).json({ msg: 'Une notification a été bien supprimer' }) })
+  .catch(e => { res.status(404).json({ msg: 'vous ne pouvez pas supprimer cette notification' }) })
 })
 
 module.exports = router

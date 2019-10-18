@@ -33,10 +33,8 @@ router.get('/annuler', [checkUserConnected, checkUserRoleChef], (req, res) => {
     paymentDao.cancelPayment(r),
     reservDao.updateEtatReserv('annuler', r)
   ])
-    .then(v => {
-      res.redirect('/chefstation/reservations')
-    })
-    .catch(e => { res.redirect('/404') })
+    .then(r => { res.status(200).json({ msg: 'Une réservation a été bien supprimer' }) })
+    .catch(e => { res.status(404).json({ msg: 'vous ne pouvez pas supprimer cette réservation' }) })
 })
 
 module.exports = router
