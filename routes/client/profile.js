@@ -21,7 +21,6 @@ router.get('/profile', checkUserConnected, async (req, res) => {
 router.post('/profile', checkUserConnected, (req, res) => {
   let { nom, prenom, email, password, tel } = req.body;
   let { id } = req.session.userInfo
-
   let User = new UtilisateurModel(nom, prenom, email, password, tel)
 
   utilisateurDao.updateUser(id, objectTrim(User))
@@ -31,9 +30,7 @@ router.post('/profile', checkUserConnected, (req, res) => {
         msg: 'Votre profile a été bien modifiée'
       });
     })
-    .catch(e => {
-      res.render('client/profile/index', { msg: 'erreur de modification!' });
-    })
+    .catch(e => { res.render('client/profile/index', { msg: 'erreur de modification!' }); })
 })
 
 /** user change password */
@@ -74,12 +71,8 @@ router.post('/profile/avatar', [checkUserConnected, upload.single("avatar")], (r
       const encoded = data.toString("base64")
 
       utilisateurDao.updateAvatar(encoded, req.session.userInfo.email)
-        .then(result => {
-          res.redirect('/utilisateur/profile')
-        })
-        .catch(error => {
-          res.render('client/profile/index', { msg: 'Erreur de modification' })
-        })
+        .then(r => { res.redirect('/utilisateur/profile') })
+        .catch(e => { res.render('client/profile/index', { msg: 'Erreur de modification' }) })
     })
     .catch(errd => { res.redirect('/404') })
 })

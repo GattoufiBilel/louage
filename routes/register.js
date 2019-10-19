@@ -62,20 +62,11 @@ router.get('/email/validation', isConnected, (req, res) => {
 })
 
 router.post('/email/validation', isConnected, (req, res) => {
-
-  let { key } = req.body
-
-  jwt.verify(key, 'shhhhh', function (err, decoded) {
+  jwt.verify(req.body.key, 'shhhhh', function (err, decoded) {
     if (!err) {
       knex('utilisateurs').where({ email: decoded.email }).update({ etat_email: 1 })
-        .then(result => {
-          res.render('register-valider', {
-            msg: 'Votre email a été bien validée, vous pouvez se connecter maintenant', c: 0
-          })
-        })
-        .catch(error => {
-          res.render('register-valider', { msg: 'Erreur de validation clé secret' })
-        })
+        .then(r => { res.redirect('/login') })
+        .catch(e => { res.render('register-valider', { msg: 'Erreur de validation clé secret' }) })
     }
     else {
       res.render('register-valider', { msg: 'Clé n\'est pas valide! veuillez vérifier votre boîte de réception', c: 0 })

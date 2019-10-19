@@ -10,17 +10,13 @@ router.get('/', [checkUserConnected, checkAdminOrChef], (req, res) => {
 
 router.get('/utilisateurs.json', [checkUserConnected, checkAdminOrChef], (req, res) => {
   utilisateurDao.getUsers()
-    .then(function (utilisateurs) {
-      res.status(200).json(utilisateurs)
-    })
+    .then(function (utilisateurs) { res.status(200).json(utilisateurs) })
     .catch(e => { res.status(404).json(utilisateurs) })
 })
 
 router.get('/stations.json', [checkUserConnected, checkAdminOrChef], (req, res) => {
   stationDao.getAllStations()
-    .then(function (stations) {
-      res.status(200).json(stations)
-    })
+    .then(function (stations) { res.status(200).json(stations) })
     .catch(e => { res.status(404).json(stations) })
 })
 

@@ -21,33 +21,23 @@ router.get('/', [checkUserConnected, checkAdminOrChef], function (req, res) {
 
             Promise.all(promises)
                 .then((values) => {
-                    let data = {
-                        vehicules: values[0],
-                        voyages: values[1],
-                        reservations: values[2]
-                    }
+                    let data = { vehicules: values[0], voyages: values[1], reservations: values[2] }
                     res.render('chefstation/index', { data })
                 })
-                .catch(error => {
-                    res.render('chefstation/index')
-                })
+                .catch(error => { res.render('chefstation/index') })
         })
         .catch(e => { res.redirect('/404') })
 })
 
 router.get('/voyages.json', [checkUserConnected, checkAdminOrChef], function (req, res) {
     voyageDao.getVoyageByNomStation(req.session.chefStationInfo.nom_station)
-        .then(function (voyages) {
-            res.status(200).json(voyages)
-        })
+        .then(function (voyages) { res.status(200).json(voyages) })
         .catch(e => { res.status(404).json(voyages) })
 })
 
 router.get('/reservations.json', [checkUserConnected, checkAdminOrChef], function (req, res) {
     reservDao.getAllReservationsByStation(req.session.chefStationInfo.id_station)
-        .then(function (resvs) {
-            res.status(200).json(resvs)
-        })
+        .then(function (resvs) { res.status(200).json(resvs) })
         .catch(e => { res.status(404).json(resvs) })
 })
 

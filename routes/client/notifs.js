@@ -16,12 +16,10 @@ router.get('/', [checkUserConnected, checkIsClient], (req, res) => {
 
         v.timestamp_notification = 'depuis ' + (m < 61 ? m + ' minutes' : h < 25 ? h + ' heures' : days + ' jours')
         return v
-      })      
+      })
       res.render('client/profile/notifs', { notifications })
     })
-    .catch(e => {
-      res.render('client/profile')
-    })
+    .catch(e => { res.render('client/profile') })
 })
 
 module.exports = router
