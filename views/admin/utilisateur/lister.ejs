@@ -8,36 +8,40 @@
       <table class="table table-hover" id="myTable">
         <thead>
           <tr>
+            <th>avatar</th>
             <th>nom</th>
             <th>prenom</th>
             <th>email</th>
-            <th>etat</th>            
-            <th>tel</th>            
+            <th>etat</th>
+            <th>tel</th>
             <th>role</th>
             <th>timestamp</th>
             <th>action</th>
           </tr>
         </thead>
         <tbody>
-          <% utilisateurs.forEach(u => {  %>
+          <% utilisateurs.forEach(u => {  
+            var avtr = u.avatar ? 'data:image/png;base64,'+u.avatar : '/img/profile.png'
+            %>
           <tr>
+            <td><img src="<%= avtr %>" alt="avatar" style="border-radius: 50%; max-width: 30px;"></td>
             <td><%= u.nom ? u.nom : '-' %></td>
             <td><%= u.prenom ? u.prenom : '-' %></td>
             <td><%= u.email %></td>
             <td><%= u.etat_email === 1 ? 'activer' : 'non activer' %></td>
-            <td><%= u.tel ? u.tel : '-' %></td>            
+            <td><%= u.tel ? u.tel : '-' %></td>
             <td><%= u.role %></td>
             <td><%= new Date(u.timestamp_utilisateur).toString().slice(0,24) %></td>
             <td>
-              <a class="btn btn-danger btn-delete" href="/admin/utilisateurs/supprimer?email=<%= u.email %>"><i
-                  class="fas fa-trash-alt"></i></a>
+              <a class="btn btn-danger btn-delete" href="/admin/utilisateurs/supprimer?email=<%= u.email %>"><i class="fas fa-trash-alt"></i></a>
             </td>
           </tr>
           <% }) %>
         </tbody>
       </table>
     </div>
-    <button onclick="tableToExcel('myTable')" class="btn btn-dark"><i class="fas fa-file-excel"></i> Exporter en Excel</button>
+    <button onclick="tableToExcel('myTable')" class="btn btn-dark"><i class="fas fa-file-excel"></i> Exporter en
+      Excel</button>
     <% } %>
   </div>
 </div>
