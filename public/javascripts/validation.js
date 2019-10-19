@@ -55,8 +55,8 @@ if (formRegister) {
 
 /** input image file validation */
 (function () {
-  const inputAvatar = document.getElementById("inputImage");
-  const btnChangeAvatar = document.getElementById("btn-update-avatar");
+  const inputAvatar = document.querySelector(".custom-file-input");
+  const btnChangeAvatar = document.querySelector(".btn-update-avatar");
 
   if (btnChangeAvatar) {
     btnChangeAvatar.disabled = true;
@@ -66,9 +66,7 @@ if (formRegister) {
 
       const validExtensions = [".png", ".jpeg", ".jpg", ".svg"];
       let isValid = validExtensions.includes(inputValue);
-
       btnChangeAvatar.disabled = isValid ? false : true;
-
       isValid ? previewImage(event) : "";
     }
   }
@@ -80,28 +78,10 @@ function previewImage (event) {
 
   reader.onload = () => {
     if (reader.readyState === 2) {
-      imgField.src = reader.result;
+      imgField.src = reader.result
     }
   }
-  reader.readAsDataURL(event.target.files[0]);
-}
-
-/** Contact Page Form */
-let btnSend = document.getElementById('btn-send-mail'), r = '';
-if (btnSend) {
-  btnSend.disabled = true;
-  let check = (s) => /^[a-z0-9\;\.\,\+\-\s+ ]+$/gmi.test(s);
-
-  document.getElementById('message').onkeyup = (e) => {
-    r = e.target.value;
-    if (check(r.replace(/\r|\n/g, ''))) {
-      if (r.length > 50) btnSend.disabled = false;
-      else btnSend.disabled = true;
-    }
-    else {
-      btnSend.disabled = true;
-    }
-  }
+  reader.readAsDataURL(event.target.files[0])
 }
 
 $(document).ready(function () {
