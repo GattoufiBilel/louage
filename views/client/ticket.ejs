@@ -2,260 +2,51 @@
 <%- include('../partials/navbar') -%>
 <%- include('../partials/section',{ title:'Ticket', sub:'Ticket' }) -%>
 <style>
-.boarding-pass {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  text-transform: uppercase;
-}
-.boarding-pass small {
-  display: block;
-  font-size: 11px;
-  color: #A2A9B3;
-  margin-bottom: 2px;
-}
-.boarding-pass strong {
-  font-size: 15px;
-  display: block;
-}
-.boarding-pass header {
-  background: linear-gradient(to bottom, #36475f, #2c394f);
-  padding: 12px 20px;
-  height: 53px;
-}
-.boarding-pass header .logo {
-  float: left;
-  width: 104px;
-  height: 31px;
-}
-.boarding-pass header .flight {
-  float: right;
-  color: #fff;
-  text-align: right;
-}
-.boarding-pass header .flight small {
-  font-size: 8px;
-  margin-bottom: 2px;
-  opacity: 0.8;
-}
-.boarding-pass header .flight strong {
-  font-size: 18px;
-}
-.boarding-pass .cities {
-  position: relative;
-}
-.boarding-pass .cities::after {
-  content: '';
-  display: table;
-  clear: both;
-}
-.boarding-pass .cities .city {
-  padding: 20px 18px;
-  float: left;
-}
-.boarding-pass .cities .city:nth-child(2) {
-  float: right;
-}
-.boarding-pass .cities .city strong {
-  font-size: 40px;
-  font-weight: 300;
-  line-height: 1;
-}
-.boarding-pass .cities .city small {
-  margin-bottom: 0px;
-  margin-left: 3px;
-}
-.boarding-pass .cities .airplane {
-  position: absolute;
-  width: 30px;
-  height: 25px;
-  top: 57%;
-  left: 30%;
-  opacity: 0;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  -webkit-animation: move 3s infinite;
-          animation: move 3s infinite;
-}
-@-webkit-keyframes move {
-  40% {
-    left: 50%;
-    opacity: 1;
+  .toast {
+    padding: 20px;
   }
-  100% {
-    left: 70%;
-    opacity: 0;
+  .toast small {
+    text-transform: uppercase;
+    color: #afafaf !important;
   }
-}
-@keyframes move {
-  40% {
-    left: 50%;
-    opacity: 1;
+  .toast h4 {
+    font-size: 20px;
   }
-  100% {
-    left: 70%;
-    opacity: 0;
+  .col-md-8 iframe {
+    max-height: 250px
   }
-}
-.boarding-pass .infos {
-  display: flex;
-  border-top: 1px solid #99D298;
-}
-.boarding-pass .infos .places,
-.boarding-pass .infos .times {
-  width: 50%;
-  padding: 10px 0;
-}
-.boarding-pass .infos .places::after,
-.boarding-pass .infos .times::after {
-  content: '';
-  display: table;
-  clear: both;
-}
-.boarding-pass .infos .times strong {
-  -webkit-transform: scale(0.9);
-          transform: scale(0.9);
-  -webkit-transform-origin: left bottom;
-          transform-origin: left bottom;
-}
-.boarding-pass .infos .places {
-  background: #ECECEC;
-  border-right: 1px solid #99D298;
-}
-.boarding-pass .infos .places small {
-  color: #97A1AD;
-}
-.boarding-pass .infos .places strong {
-  color: #239422;
-}
-.boarding-pass .infos .box {
-  padding: 10px 20px 10px;
-  width: 47%;
-  float: left;
-}
-.boarding-pass .infos .box small {
-  font-size: 10px;
-}
-.boarding-pass .strap {
-  clear: both;
-  position: relative;
-  border-top: 1px solid #99D298;
-}
-.boarding-pass .strap::after {
-  content: '';
-  display: table;
-  clear: both;
-}
-.boarding-pass .strap .box {
-  padding: 23px 0 20px 20px;
-}
-.boarding-pass .strap .box div {
-  margin-bottom: 15px;
-}
-.boarding-pass .strap .box div small {
-  font-size: 10px;
-}
-.boarding-pass .strap .box div strong {
-  font-size: 13px;
-}
-.boarding-pass .strap .box sup {
-  font-size: 8px;
-  position: relative;
-  top: -5px;
-}
-.boarding-pass .strap .qrcode {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 80px;
-  height: 80px;
-}
 </style>
 <div class="container-fluid py-6">
   <% if(locals.paymentInfo) { %>
   <div class="container">
     <div class="row">
       <div class="col-md-4 mb-3" id="ticket">
-        <div class="boarding-pass">
-          <header>
-            <svg class="logo">
-              <use xlink:href="#alitalia"></use>
-            </svg>
-            <div class="flight">
-              <small><%= paymentInfo.newReserv.nbPlaceReserv %> places</small>
-              <strong>N°: <%= paymentInfo.newReserv.uidReservation %></strong>
+        <div class="toast show">
+          <div class="toast-header">
+            <strong class="mr-auto">N°: <%= paymentInfo.newReserv.uidReservation %></strong>
+            <small><%= paymentInfo.newReserv.nbPlaceReserv %> places</small>
+          </div>
+          <div class="toast-body">
+            <div>
+              <small>DE</small><h4><%= voyage.nom_station %></h4><small>vers</small><h4><%= voyage.arrive %></h4>
             </div>
-          </header>
-          <section class="cities">
-            <div class="city">
-              <small>DE</small>        
-              <strong><%= voyage.nom_station %></strong>
+            <% if(nom && nom.length > 0) { %>
+            <div><small>Nom Complet</small><h4><%= nom %> <%= prenom %></h4></div>
+            <% } else { %>
+            <div><small>Email</small><h4><%= email %></h4></div>
+            <% } %>
+            <div><small>date de départ</small><h4><%= locals.formatDate(voyage.date_depart) %></h4></div>
+            <div><small>Heure de départ</small><h4><%= voyage.heure_depart %>h</h4>
             </div>
-            <div class="city">
-              <small>VERS</small>
-                      <strong><%= voyage.arrive %></strong>
+            <div><small>heure d'arrivée</small><h4><%= voyage.heure_arrive %>h</h4></div>
+            <div>
+              <small>Numéro de série du véhicule</small>
+              <h4><%= (voyage.num_serie_vehicule).replace(/[-]+/g,' ') %></h4>
             </div>
-            <svg class="airplane">
-              <use xlink:href="#airplane"></use>
-            </svg>
-          </section>
-          <section class="infos">
-            <div class="places">
-              <div class="box">
-                <small>NOM</small>
-                <strong><em><%= nom %></em></strong>
-              </div>
-              <div class="box">
-                <small>prenom</small>
-                <strong><em><%= prenom %></em></strong>
-              </div>
-              <div class="box">
-                <small>Seat</small>
-                <strong>14B</strong>
-              </div>
-              <div class="box">
-                <small>Class</small>
-                <strong>E</strong>
-              </div>
-            </div>
-            <div class="times">
-              <div class="box">
-                <small>Boarding</small>
-                <strong>11:05</strong>
-              </div>
-              <div class="box">
-                <small>départ</small>
-                <strong><%= voyage.heure_depart %>h</strong>
-              </div>
-              <div class="box">
-                <small>Durée</small>
-                <strong><%= +voyage.heure_arrive - +voyage.heure_depart %>h</strong>
-              </div>
-              <div class="box">
-                <small>arrivée</small>
-                <strong><%= voyage.heure_arrive %>h</strong>
-              </div>
-            </div>
-          </section>
-          <section class="strap">
-            <div class="box">
-              <div class="passenger">
-                <small>Numéro de série du véhicule</small>
-                <strong><%= (voyage.num_serie_vehicule).replace(/[-]+/g,' ') %></strong>
-              </div>
-              <div class="date">
-                <small>Date de départ</small>
-                <strong><%= locals.formatDate(voyage.date_depart) %></strong>
-              </div>
-            </div>
-            <svg class="qrcode">
-              <use xlink:href="#qrcode"></use>
-            </svg>
-          </section>
+            <div><small>TOTAL</small><h4><%= paymentInfo.newReserv.totalPrixPlaces %></h4></div>
+          </div>
         </div>
       </div>
-      
       <div class="col-md-8 mb-3">
         <iframe id='mapcanvas' class="mb-3"
           src='https://maps.google.com/maps?q=<%= encodeURIComponent(voyage.nom_station) %>&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=&amp;output=embed'
@@ -272,34 +63,5 @@
   </div>
   <% } %>
 </div>
-
-
-<div class="toast show">
-  <div class="toast-header">
-    <strong class="mr-auto">N°: <%= paymentInfo.newReserv.uidReservation %></strong>
-    <small><%= paymentInfo.newReserv.nbPlaceReserv %> places</small>
-  </div>
-  <div class="toast-body">
-    <div>
-      <small>DE</small><h4><%= voyage.nom_station %></h4><small>vers</small><h4><%= voyage.arrive %></h4>
-    </div>
-    <% if(nom && nom.length > 0) { %>
-    <div><small>Nom Complet</small><h4><%= nom %> <%= prenom %></h4></div>
-    <% } else { %>
-    <div><small>Email</small><h4><%= email %></h4></div>
-    <% } %>
-    <div><small>date de départ</small><h4><%= locals.formatDate(voyage.date_depart) %></h4></div>
-    <div><small>Heure de départ</small><h4><%= voyage.heure_depart %>h</h4>
-    </div>
-    <div><small>heure d'arrivée</small><h4><%= voyage.heure_arrive %>h</h4></div>
-    <div>
-      <small>Numéro de série du véhicule</small>
-      <h4><%= (voyage.num_serie_vehicule).replace(/[-]+/g,' ') %></h4>
-    </div>
-    <div><small>TOTAL</small><h4><%= paymentInfo.newReserv.totalPrixPlaces %></h4></div>
-  </div>
-</div>
-
-
 <script src="/javascripts/ticket.js" defer></script>
 <%- include('../partials/footer.ejs') -%>

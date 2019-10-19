@@ -16,7 +16,6 @@
             <th>n° reservées</th>
             <th>total</th>
             <th>etat</th>
-            <th>action</th>
           </tr>
         </thead>
         <tbody>
@@ -31,12 +30,6 @@
             <td><%= u.total_prix_places %></td>
             <td>
               <span class="badge badge-dark"><%= u.etat_reservation %></span>
-            </td>
-            <td>
-              <% if(u.etat_reservation === 'payer' && u.out === false) { %>
-              <a href="/chefstation/reservations/annuler?r=<%= u.uid_reservation %>"
-                class="btn btn-warning btn-cancel"><i class="fas fa-hand-paper"></i></a>
-              <% } %>
             </td>
           </tr>
           <% }) %>
