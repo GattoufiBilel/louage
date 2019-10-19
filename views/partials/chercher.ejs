@@ -1,0 +1,29 @@
+<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form action="/voyages" method="POST">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="select-stations">DE</label>
+                <select class="custom-select" id="select-stations" name="nomstation"></select>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="select-stations-v">VERS</label>
+                <select class="custom-select" id="select-stations-v" name="arrive"></select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="date" class="form-control" name="date" placeholder="Entrer date">
+          </div>
+          <button type="submit" class="btn btn-success btn-block">rechercher</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
