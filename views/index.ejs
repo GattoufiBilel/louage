@@ -1,4 +1,5 @@
 <%- include('partials/head.ejs') -%>
+<%- include('./partials/progress.ejs') -%>
 <%- include('partials/navbar') -%>
 <style>
   .search-form {
@@ -33,7 +34,7 @@
           <% if(locals.stations) { %>
           <div class="form-group">
             <label for="date">station de départ</label>
-            <select class="form-control" id="nomstation" name="nomstation">
+            <select class="custom-select" id="nomstation" name="nomstation">
               <% stations.forEach(s => { %>
               <option value="<%= s.nom_station %>"><%= s.nom_station %></option>
               <% }) %>
@@ -42,7 +43,7 @@
 
           <div class="form-group">
             <label for="date">station d'arrivée</label>
-            <select class="form-control" id="arrive" name="arrive">
+            <select class="custom-select" id="arrive" name="arrive">
               <% stations.reverse().forEach(s => { %>
               <option value="<%= s.nom_station %>"><%= s.nom_station %></option>
               <% }) %>
