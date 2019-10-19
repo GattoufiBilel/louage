@@ -71,7 +71,15 @@ module.exports = StationsDao = {
   },
   getAllStations () {
     const sql = `SELECT * FROM ${table.name} ORDER BY ${table.idStation} DESC`;
-
+    return new Promise((resolve, reject) => {
+      db.query(sql, (err, result) => {
+        if (err) reject(err)
+        else resolve(result)
+      })
+    })
+  },
+  getNomStations() {
+    const sql = `SELECT DISTINCT nom_station FROM ${table.name} GROUP BY nom_station ORDER BY ${table.idStation} DESC`;
     return new Promise((resolve, reject) => {
       db.query(sql, (err, result) => {
         if (err) reject(err)
