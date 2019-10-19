@@ -22,7 +22,7 @@
       <div class="form-group">
         <label for="arrive">arrive</label>
         <select class="form-control" id="arrive" name="arrive">
-          <% stations.forEach(v => { %><option><%= v.nom_station %></option><% }) %>
+          <% stations.reverse().forEach(v => { %><option><%= v.nom_station %></option><% }) %>
         </select>
       </div>
     </div>

@@ -139,19 +139,5 @@ module.exports = VoyagesDao = {
         else resolve(result)
       })
     })
-  },
-  getVoyageByDateAndStation (arrive, timestampVoyage, station) {
-    const rq = `select * from ${table.name} v 
-    join stations u on v.id_station = u.id_station 
-    WHERE v.arrive = ? and v.timestamp_voyage = ? and u.nom_station = ?`;
-
-    const sql = SqlString.format(rq, [arrive, timestampVoyage, station]);
-
-    return new Promise((resolve, reject) => {
-      db.query(sql, (err, result) => {
-        if (err) reject(err)
-        else resolve(result)
-      })
-    })
-  },
+  }
 }

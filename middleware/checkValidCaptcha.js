@@ -10,7 +10,5 @@ module.exports = function checkValidCaptcha (req, res, next) {
       if (r.data.success) next()
       else res.render(rendPage, { msg: "Captcha invalide!" })
     })
-    .catch(e => {
-      res.render(rendPage, { msg: "Captcha invalide!" })
-    })
+    .catch(e => { res.render(rendPage, { msg: "Captcha invalide!" }) })
 }
