@@ -9,8 +9,7 @@
     </div>
   
     <% if(locals.notifications) { 
-          notifications.forEach(n => {        
-        %>
+          notifications.forEach(n => { %>
     <a href="#" data-notif="<%= JSON.stringify(n) %>" class="list-group-item list-group-item-action" data-toggle="modal"
       data-target="#exampleModal">
       <div class="d-flex w-100 justify-content-between">
