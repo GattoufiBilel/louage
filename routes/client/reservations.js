@@ -48,7 +48,7 @@ router.get('/annuler', [checkUserConnected, checkIsClient], function (req, res) 
     reservDao.updateEtatReserv('annuler', r),
     paymentDao.cancelPayment(r)
   ])
-    .then(values => { res.redirect('/reservations/all') })
-    .catch(e => { res.redirect('/404') })
+    .then(v => { res.status(200).json({ msg: 'Une réservation a été bien annulée' }) })
+    .catch(e => { res.status(404).json({ msg: 'erreur' }) })
 })
 module.exports = router

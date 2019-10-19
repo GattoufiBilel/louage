@@ -19,3 +19,25 @@ btnDel.forEach(b => {
     return false
   }
 })
+
+var btnCancel = document.querySelectorAll('.btn-cancel')
+btnCancel.forEach(b => {
+  b.onclick = (e) => {
+    e.stopPropagation()
+    swal({
+      title: "Voulez-vous vraiment supprimer?",
+      text: "Une fois vous cliquez supprimer, vous ne pourrez plus le récupérer.",
+      icon: "warning",
+      buttons: ['non', 'oui'],
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          fetch(b.getAttribute("href"))
+            .then(r => { window.location.reload() })
+            .catch(e => { })
+        }
+      })
+    return false
+  }
+})

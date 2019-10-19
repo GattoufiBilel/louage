@@ -86,17 +86,6 @@ function previewImage (event) {
   reader.readAsDataURL(event.target.files[0]);
 }
 
-/** alert confirm before delete */
-// let btnDelete = document.querySelectorAll('.btn-delete');
-// btnDelete.forEach(b => {
-//   b.onclick = () => confirm('voulez-vous vraiment supprimer ?')
-// })
-
-let btnCancel = document.querySelectorAll('.btn-cancel');
-btnCancel.forEach(b => {
-  b.onclick = () => confirm('voulez-vous vraiment annuler ?');
-})
-
 /** Contact Page Form */
 let btnSend = document.getElementById('btn-send-mail'), r = '';
 if (btnSend) {
