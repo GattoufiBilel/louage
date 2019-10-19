@@ -19,25 +19,20 @@ router.get('/profile', checkUserConnected, async (req, res) => {
 })
 
 router.post('/profile', checkUserConnected, (req, res) => {
-  let { nom, prenom, email, password, tel } = req.body;
+  let { nom, prenom, email, tel } = req.body;
   let { id } = req.session.userInfo
-  let User = new UtilisateurModel(nom, prenom, email, password, tel)
+  let User = new UtilisateurModel(nom, prenom, email, '', tel)
 
   utilisateurDao.updateUser(id, objectTrim(User))
     .then(r => {
-      res.render('client/profile/index', {
-        user: User,
+      res.json({
         msg: 'Votre profile a été bien modifiée'
       });
     })
-    .catch(e => { res.render('client/profile/index', { msg: 'erreur de modification!' }); })
+    .catch(e => { res.json({ msg: 'erreur de modification!' }); })
 })
 
 /** user change password */
-router.get('/profile/password', checkUserConnected, (req, res) => {
-  res.render('client/profile/password')
-})
-
 router.post('/profile/password', checkUserConnected, (req, res) => {
   let { npassword, ancien } = req.body
   let { email, password } = req.session.userInfo
@@ -47,16 +42,12 @@ router.post('/profile/password', checkUserConnected, (req, res) => {
       bcrypt.hash(npassword, saltRounds)
         .then(function (hash) {
           utilisateurDao.updateUserPassword(email, hash)
-            .then(r => {
-              res.render('client/profile/password', { msg: 'Votre mot de passe a été bien modifiée' })
-            })
-            .catch(e => {
-              res.render('client/profile/password', { msg: 'Veuillez verifier votre mot de passe ' })
-            })
+            .then(r => { res.json({ msg: 'Votre mot de passe a été bien modifiée' }) })
+            .catch(e => { res.json({ msg: 'Veuillez verifier votre mot de passe ' }) })
         })
         .catch(e => { res.redirect('/404') })
     }
-    else res.render('client/profile/password', { msg: 'Veuillez verifier votre mot de passe ' })
+    else res.json({ msg: 'Veuillez verifier votre mot de passe ' })
   })
 })
 
@@ -77,11 +68,6 @@ router.post('/profile/avatar', [checkUserConnected, upload.single("avatar")], (r
     .catch(errd => { res.redirect('/404') })
 })
 
-/** Suppression compte (profile) */
-router.get('/profile/desactiver', checkUserConnected, (req, res) => {
-  res.render('client/profile/desactiver')
-})
-
 router.post('/profile/desactiver', checkUserConnected, (req, res) => {
   let { password } = req.body
   let userPassword = req.session.userInfo.password
@@ -95,20 +81,15 @@ router.post('/profile/desactiver', checkUserConnected, (req, res) => {
             req.session.destroy()
             req.session = null
             res.locals = null
-            res.redirect('/register')
+            res.status(200).json({ msg: 'ok' })
           })
-          .catch(error => {
-            res.render('client/profile/desactiver', { msg: 'Veuillez verifier votre mot de passe' })
-          })
+          .catch(error => { res.json({ msg: 'Veuillez verifier votre mot de passe' }) })
       }
-      else {
-        res.render('client/profile/desactiver', { msg: 'Veuillez verifier votre mot de passe' })
-      }
+      else { res.json({ msg: 'Veuillez verifier votre mot de passe' }) }
     })
     .catch(e => {
-      res.render('client/profile/desactiver',
-        { msg: 'Pour désactiver votre compte, vous devez contacter le service client.' })
-    });
+      res.json({ msg: 'Pour désactiver votre compte, vous devez contacter le service client.' })
+    })
 })
 
 module.exports = router
