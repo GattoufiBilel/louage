@@ -13,9 +13,7 @@
       <div class="form-group">
         <label for="nomstation">depart</label>
         <select class="form-control" id="nomstation" name="nomstation">
-          <% stations.forEach(v => { %>
-          <option><%= v.nom_station %></option>
-          <% }) %>
+          <% stations.forEach(v => { %><option><%= v.nom_station %></option><% }) %>
         </select>
       </div>
     </div>
@@ -24,9 +22,7 @@
       <div class="form-group">
         <label for="arrive">arrive</label>
         <select class="form-control" id="arrive" name="arrive">
-          <% stations.forEach(v => { %>
-          <option><%= v.nom_station %></option>
-          <% }) %>
+          <% stations.forEach(v => { %><option><%= v.nom_station %></option><% }) %>
         </select>
       </div>
     </div>

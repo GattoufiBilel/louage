@@ -7,12 +7,8 @@ var utilisateurDao = require('../../dao/utilisateurs.dao')
 
 router.get('/', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
   stationDao.getStations()
-    .then((stations) => {
-      res.render('admin/station/lister', { stations })
-    })
-    .catch(e => {
-      res.render('admin/station/lister')
-    })
+    .then(stations => { res.render('admin/station/lister', { stations }) })
+    .catch(e => { res.render('admin/station/lister') })
 })
 
 router.get('/ajout', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
@@ -48,9 +44,7 @@ router.get('/supprimer', [checkUserConnected, checkUserRoleAdmin], (req, res) =>
 router.get('/modifier', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
   let { nom } = req.query
   stationDao.getStation(nom)
-    .then(station => {
-      res.render('admin/station/modifier', { station: station[0] })
-    })
+    .then(station => { res.render('admin/station/modifier', { station: station[0] }) })
     .catch(e => { res.redirect('/404') })
 })
 
