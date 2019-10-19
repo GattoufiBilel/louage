@@ -10,12 +10,8 @@ var utilisateurDao = require('../../dao/utilisateurs.dao')
 
 router.get('/', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
   utilisateurDao.getUsers()
-    .then(function (utilisateurs) {
-      res.render('admin/utilisateur/lister', { utilisateurs })
-    })
-    .catch(e => {
-      res.render('admin/utilisateur/lister')
-    })
+    .then(function (utilisateurs) { res.render('admin/utilisateur/lister', { utilisateurs }) })
+    .catch(e => { res.render('admin/utilisateur/lister') })
 })
 
 router.get('/ajout', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
@@ -51,8 +47,8 @@ router.post('/modifier', [checkUserConnected, checkUserRoleAdmin], (req, res) =>
 router.get('/supprimer', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
   let { email } = req.query
   utilisateurDao.deleteUserByEmail(email)
-  .then(r => { res.status(200).json({ msg: 'Un utilisateur a été bien supprimer' }) })
-  .catch(e => { res.status(404).json({ msg: 'vous ne pouvez pas supprimer cet utilisateur' }) })
+    .then(r => { res.status(200).json({ msg: 'Un utilisateur a été bien supprimer' }) })
+    .catch(e => { res.status(404).json({ msg: 'vous ne pouvez pas supprimer cet utilisateur' }) })
 })
 
 module.exports = router

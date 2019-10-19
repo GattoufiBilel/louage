@@ -41,9 +41,7 @@ router.post('/confirmer', [checkUserConnected, checkIsClient, checkValidCaptcha]
         JSON.stringify({ newReserv, numcarte, uidvoyage }), { maxAge: 1000 * 60 * 30, httpOnly: true })
       res.redirect('/ticket')
     })
-    .catch(error => {
-      res.redirect('/404')
-    })
+    .catch(error => { res.redirect('/404') })
 })
 
 module.exports = router

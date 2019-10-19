@@ -54,9 +54,7 @@ function checkKey (req, res, next) {
       res.render('pass-oublie/reinitialiser', { msg: 'Votre clé n\'est pas valide' })
       return
     }
-    else {
-      next()
-    }
+    else { next() }
   })
 }
 
@@ -71,7 +69,7 @@ router.post('/reinitialiser', [isConnected, checkKey], (req, res) => {
           if (Object.keys(result).length < 1 && result.affectedRows !== 1) throw 404
           res.render('pass-oublie/reinitialiser', { msg: 'Maintenant vous pouvez ' })
         })
-        .catch(error => {
+        .catch(er => {
           res.render('pass-oublie/reinitialiser', { msg: 'Erreur de verification' })
         })
     })
