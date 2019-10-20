@@ -7,7 +7,7 @@
     <form action="/admin/stations/ajout" method="POST" class="form-general form-bg-gray mb-3">
 
       <div class="form-group">
-        <label for="chef">Chef station</label>
+        <label for="chef">Chef de station</label>
         <select class="form-control" id="chef" name="chef">
           <% chefStations.forEach(chef => { %>
           <option value="<%= chef.id %>"><%= chef.email %></option>
@@ -16,7 +16,7 @@
       </div>
 
       <div class="form-group">
-        <label for="nom">nom station</label>
+        <label for="nom">nom de station</label>
         <input type="text" class="form-control" id="nom" name="nom" pattern="[a-zA-Z ]+" placeholder="Enter nom station"
           required>
       </div>
