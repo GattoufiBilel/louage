@@ -7,7 +7,7 @@
       <input type="text" name="uidvoyage" id="uidvoyage" value="<%= voyage.uid_voyage %>" hidden readonly>
 
       <div class="form-group">
-        <label for="arrive">statin d'arrivé</label>
+        <label for="arrive">statin d'arrivée</label>
         <input type="text" class="form-control" id="arrive" pattern="[a-zA-Z ]+" name="arrive"
           value="<%= voyage.arrive %>" required readonly>
       </div>
@@ -15,7 +15,7 @@
       <div class="row">
         <div class="col-md-4">
           <div class="form-group">
-            <label for="heureDepart">heure de Depart</label>
+            <label for="heureDepart">heure de Départ</label>
             <input type="number" class="form-control" id="heureDepart" min="0" max="24" name="heureDepart"
               value="<%= voyage.heure_depart %>" required>
           </div>
@@ -29,7 +29,7 @@
           </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label for="dateDepart">date de Depart</label>
+            <label for="dateDepart">date de Départ</label>
             <input type="date" class="form-control" id="dateDepart" name="dateDepart" value="<%= voyage.date_depart %>"
               required>
           </div>
@@ -39,7 +39,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <label for="prixPlace">prix place</label>
+            <label for="prixPlace">prix d'une place</label>
             <input type="text" class="form-control" id="prixPlace" name="prixPlace" value="<%= voyage.prix_place %>" required>
           </div>
         </div>
@@ -51,7 +51,6 @@
           </div>
         </div>
       </div>
-
       <button type="submit" class="btn btn-dark" id="btn-ajout">mettre à jour voyage</button>
     </form>
   </div>
