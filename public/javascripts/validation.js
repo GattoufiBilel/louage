@@ -55,7 +55,7 @@ if (formRegister) {
 
 /** input image file validation */
 (function () {
-  const inputAvatar = document.querySelector(".custom-file-input");
+  const inputAvatar = document.querySelector(".input-img");
   const btnChangeAvatar = document.querySelector(".btn-update-avatar");
 
   if (btnChangeAvatar) {
