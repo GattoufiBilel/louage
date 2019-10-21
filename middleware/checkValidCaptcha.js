@@ -1,14 +1,23 @@
-var axios = require('axios')
+var request = require('request')
 module.exports = function checkValidCaptcha (req, res, next) {
   let { originalUrl } = req
   let rendPage = originalUrl.split('/').includes('payments') ? 'payments' : 'contact'
 
   let captcha = req.body['g-recaptcha-response']
-  const URL = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.CAPTCHA_SECRET_KEY}&response=${captcha}&remoteip=${req.connection.remoteAddress}`;
-  axios.get(URL)
-    .then(r => {
-      if (r.data.success) next()
-      else res.render(rendPage, { msg: "Captcha invalide!" })
-    })
-    .catch(e => { res.render(rendPage, { msg: "Captcha invalide!" }) })
+
+  const options = {
+    uri: "https://www.google.com/recaptcha/api/siteverify",
+    json: true,
+    form: {
+      secret: process.env.CAPTCHA_SECRET_KEY,
+      response: captcha
+    }
+  }
+
+  request.post(options, function (err, response, body) {
+    if (err || !body.success) {
+      res.render(rendPage, { msg: "Captcha invalide!" })
+    }
+    next()
+  })
 }
