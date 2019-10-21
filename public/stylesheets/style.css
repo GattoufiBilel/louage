@@ -127,10 +127,23 @@ a {
   display: none;
 }
 
-th {
-  color: #fff !important;
-  background-color: #1f2532 !important;
+.head-table{
+  background-color: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.head-table h3 {
   text-transform: uppercase;
+    font-size: 18px;
+    line-height: 2;
+    font-weight: 600;
+}
+
+th {
+  border: none !important;
+  text-transform: uppercase !important;
 }
 
 .btn-dark {

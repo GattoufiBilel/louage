@@ -4,6 +4,13 @@
   <div class="container">
     <%- include('../navbar') -%>
     <% if(locals.notifications) {  %>
+      <div class="head-table w-100">
+        <h3 class="w-50 mb-0"><i class="fas fa-cogs"></i> Gestion des notifications</span></h3>
+        <div class="d-flex flex-row-reverse bd-highlight w-50">
+          <button onclick="tableToExcel('myTable')" class="btn btn-dark"><i class="fas fa-file-excel"></i> EN Excel</button>
+          <a href="/chefstation/notifications/envoyer" class="btn btn-success mr-3"><i class="fas fa-plus"></i> envoyer</a>
+        </div>
+      </div>
     <div class="table-responsive">
       <table class="table table-hover" id="myTable">
         <thead>
