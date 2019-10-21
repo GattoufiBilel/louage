@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: center;
 }
-
+.auth h1 { font-size: 30px !important;}
 .auth h1 i { float: right;}
 .auth hr { background-color: #909090 !important;}
-.auth form {max-width: 420px;}
+.auth form {max-width: 430px;}

@@ -6,13 +6,27 @@ function isPureStr (str) {
 }
 
 function isTrueProvider (email) {
-  let providers = ['gmail', 'yahoo', 'outlook', 'hotmail', 'zoho', 'tuta']
-  return providers.includes(email)
+  let domain = email.replace(/.*@/gi, '').split('.')[0]
+  let providers = ['gmail', 'test', 'yahoo', 'outlook', 'hotmail', 'zoho', 'tuta']
+  return providers.includes(domain)
 }
 
 function isValidInput (str) {
   return (/^[a-z0-9\xBF-\xFF\s+\@\.\-\_\#\%]*$/gi.test(str) && str.length > 0)
 }
+
+function cmpDate (btnSub, dateElmnt) {
+  if (btnSub && dateElmnt) {
+    btnSub.disabled = true;
+    let tody = Date.parse(new Date().toISOString().slice(0, 10));
+    dateElmnt.onchange = (e) => {
+      btnSub.disabled = Date.parse(e.target.value) < tody;
+    }
+  }
+}
+cmpDate(document.getElementById('btn-s-i'), document.getElementById('date-s'))
+cmpDate(document.getElementById('btn-date-modal'), document.getElementById('date-modal'))
+cmpDate(document.getElementById('btn-ajout'), document.getElementById('dateDepart'))
 
 let generalForm = document.querySelector('.form-general');
 if (generalForm) {
