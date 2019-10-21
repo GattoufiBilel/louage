@@ -5,6 +5,11 @@ function isPureStr (str) {
   return (/^[a-z0-9\xBF-\xFF@\.\-\_]*$/gi.test(str) && str.length > 5)
 }
 
+function isTrueProvider (email) {
+  let providers = ['gmail', 'yahoo', 'outlook', 'hotmail', 'zoho', 'tuta']
+  return providers.includes(email)
+}
+
 function isValidInput (str) {
   return (/^[a-z0-9\xBF-\xFF\s+\@\.\-\_\#\%]*$/gi.test(str) && str.length > 0)
 }
@@ -38,16 +43,30 @@ if (formRegister) {
     let email = e.target.email.value;
     let pass = e.target.password.value;
 
-    if (isPureStr(email) && isPureStr(pass)) {
-      return true
-    }
+    if (isPureStr(email) && isPureStr(pass) && isTrueProvider(email)) { return true }
     else {
-      e.preventDefault();
-      let msgForm = document.querySelector('#form-signin');
+      e.preventDefault()
+      let msgForm = document.querySelector('#form-signin')
       msgForm.style.display = 'block';
       msgForm.textContent = 'Email ou mot de passe invalide!';
+      setTimeout(() => { msgForm.style.display = 'none' }, 5000)
+      return false
+    }
+  }
+}
 
-      setTimeout(() => { msgForm.style.display = 'none' }, 3000);
+var formPassOublie = document.getElementById('form-pass-oublie')
+if (formPassOublie) {
+  formPassOublie.onsubmit = e => {
+    let email = e.target.email.value;
+
+    if (isPureStr(email) && isTrueProvider(email)) { return true }
+    else {
+      e.preventDefault()
+      let msgForm = document.querySelector('#form-signin')
+      msgForm.style.display = 'block';
+      msgForm.textContent = 'Email invalide!';
+      setTimeout(() => { msgForm.style.display = 'none' }, 5000)
       return false
     }
   }

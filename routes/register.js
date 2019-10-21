@@ -66,7 +66,7 @@ router.post('/email/validation', isConnected, (req, res) => {
     if (!err) {
       knex('utilisateurs').where({ email: decoded.email }).update({ etat_email: 1 })
         .then(r => { res.redirect('/login') })
-        .catch(e => { res.render('register-valider', { msg: 'Erreur de validation clé secret', e: 'error' }) })
+        .catch(e => { res.render('register-valider', { msg: 'Clé secrete invalide', e: 'error' }) })
     }
     else {
       res.render('register-valider', { msg: 'Clé n\'est pas valide! veuillez vérifier votre boîte de réception', e: 'error' })

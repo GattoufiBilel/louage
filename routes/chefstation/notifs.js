@@ -17,10 +17,9 @@ router.post('/envoyer', [checkUserConnected, checkUserRoleChef], (req, res) => {
   let { id } = req.session.userInfo
   let { nom_station } = req.session.chefStationInfo
   let { sujet, msg } = req.body
-
   notifsDao.addNotification(new Notification(sujet, msg, nom_station, id))
-    .then(r => { res.render('chefstation/notifs/ajout', { msg: 'votre notification a été bien enovyé' }) })
-    .catch(e => { res.render('chefstation/notifs/ajout', { msg: 'Erreur d\'envoie, réessayez plus tard' }) })
+    .then(r => { res.render('chefstation/notifs/ajout', { msg: 'Votre notification a été bien enovyé' }) })
+    .catch(e => { res.render('chefstation/notifs/ajout', { msg: 'Erreur d\'envoie, réessayez plus tard', e: 'error' }) })
 })
 
 router.get('/modifier', [checkUserConnected, checkUserRoleChef], (req, res) => {
@@ -40,7 +39,7 @@ router.post('/modifier', [checkUserConnected, checkUserRoleChef], (req, res) => 
 router.get('/supprimer', [checkUserConnected, checkUserRoleChef], (req, res) => {
   notifsDao.deletNotification(req.query.notif)
     .then(r => { res.status(200).json({ msg: 'Une notification a été bien supprimer' }) })
-    .catch(e => { res.status(404).json({ msg: 'vous ne pouvez pas supprimer cette notification' }) })
+    .catch(e => { res.status(404).json({ msg: 'Vous ne pouvez pas supprimer cette notification' }) })
 })
 
 module.exports = router
