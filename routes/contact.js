@@ -3,9 +3,7 @@ var nodemailer = require('nodemailer')
 var validContactForm = require('../middleware/validContactForm')
 var checkValidCaptcha = require('../middleware/checkValidCaptcha')
 
-router.get('/', (req, res) => {
-  res.render('contact')
-})
+router.get('/', (req, res) => { res.render('contact') })
 
 router.post('/', [checkValidCaptcha, validContactForm], (req, res) => {
   let { nom, sujet, email, message } = req.body

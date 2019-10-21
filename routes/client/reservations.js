@@ -6,14 +6,9 @@ var voyageDao = require('../../dao/voyages.dao')
 var paymentDao = require('../../dao/payments.dao')
 
 router.get('/', [checkUserConnected, checkIsClient], (req, res) => {
-
   voyageDao.getVoyageById(req.query.v)
-    .then(r => {
-      res.render('client/reservations', { voyage: r[0] })
-    })
-    .catch(e => {
-      res.redirect('/404')
-    })
+    .then(r => { res.render('client/reservations', { voyage: r[0] }) })
+    .catch(e => { res.redirect('/404') })
 })
 
 router.get('/all', [checkUserConnected, checkIsClient], (req, res) => {
@@ -31,9 +26,7 @@ router.get('/all', [checkUserConnected, checkIsClient], (req, res) => {
 
       res.render('client/profile/reservations', { reservations })
     })
-    .catch(e => {
-      res.redirect('/utilisateur/profile')
-    })
+    .catch(e => { res.redirect('/utilisateur/profile') })
 })
 
 router.post('/ajout', [checkUserConnected, checkIsClient], (req, res) => {

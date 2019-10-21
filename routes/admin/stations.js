@@ -29,7 +29,7 @@ router.post('/ajout', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
     })
     .catch(e => {
       res.render('admin/station/ajout', {
-        msg: 'Erreur d\'ajout! chef station est deja affecté une station'
+        msg: 'Erreur d\'ajout! chef station est deja affecté une station', e: 'error'
       })
     })
 })
@@ -42,8 +42,7 @@ router.get('/supprimer', [checkUserConnected, checkUserRoleAdmin], (req, res) =>
 })
 
 router.get('/modifier', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
-  let { nom } = req.query
-  stationDao.getStation(nom)
+  stationDao.getStation(req.query.nom)
     .then(station => { res.render('admin/station/modifier', { station: station[0] }) })
     .catch(e => { res.redirect('/404') })
 })

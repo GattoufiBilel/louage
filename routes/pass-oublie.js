@@ -70,11 +70,11 @@ router.post('/reinitialiser', [isConnected, checkKey], (req, res) => {
           res.render('pass-oublie/reinitialiser', { msg: 'Maintenant vous pouvez ' })
         })
         .catch(er => {
-          res.render('pass-oublie/reinitialiser', { msg: 'Erreur de verification' })
+          res.render('pass-oublie/reinitialiser', { msg: 'Erreur de verification', e: 'error' })
         })
     })
     .catch(e => {
-      res.render('pass-oublie/reinitialiser', { msg: 'Erreur de verification' })
+      res.render('pass-oublie/reinitialiser', { msg: 'Erreur de verification', e: 'error' })
     })
 })
 module.exports = router

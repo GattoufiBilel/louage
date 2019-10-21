@@ -1,5 +1,4 @@
-let formProf = document.querySelector('.form-profile')
-formProf.onsubmit = (e) => {
+document.querySelector('.form-profile').onsubmit = (e) => {
   e.preventDefault()
   let nom = e.target.nom.value;
   let prenom = e.target.prenom.value;
@@ -13,10 +12,10 @@ formProf.onsubmit = (e) => {
   })
     .then(r => r.json())
     .then(r => {
-      msg.innerHTML = `<div class="alert alert-dark" role="alert">${r.msg}</div>`
+      msg.innerHTML = `<div class="alert alert-dark" role="alert"><i class="fas fa-info-circle"></i> ${r.msg}</div>`
     })
     .catch(e => {
-      msg.innerHTML = `<div class="alert alert-dark" role="alert">${r.msg}</div>`
+      msg.innerHTML = `<div class="alert alert-danger" role="alert"><i class="fas fa-info-circle"></i> ${r.msg}</div>`
     })
   return false
 }

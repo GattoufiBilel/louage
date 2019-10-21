@@ -12,14 +12,14 @@
       </div>
       <button class="btn btn-lg btn-success btn-block mt-3 mb-3 font-s14" type="submit">valider</button>
       <div>
-        <% if(locals.msg && locals.c === undefined) { %>
+        <% if(locals.msg) { %>
+        <% if(locals.e && locals.e.length >2) { %>
         <hr>
         <div class="alert alert-dark mx-400" role="alert"><%= msg %></div>
-        <% } %>
-
-        <% if(locals.msg && locals.c === 0) { %>
+        <% } else { %>
         <hr>
         <div class="alert alert-dark mx-400" role="alert"> <%= msg %> <a href="/login">se connecter</a></div>
+        <% } %>
         <% } %>
       </div>
     </form>
@@ -27,4 +27,5 @@
 </div>
 <script src="javascripts/validation.js" defer></script>
 </body>
+
 </html>

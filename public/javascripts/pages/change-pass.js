@@ -10,8 +10,7 @@ let btnPass = document.getElementById('btn-submit-pass')
     }
   }
 
-let frmChangePass = document.getElementById('form-pass')
-frmChangePass.onsubmit = (e) => {
+document.getElementById('form-pass').onsubmit = (e) => {
   e.preventDefault()
   let ancien = e.target.ancien.value;
   let npassword = e.target.npassword.value;
@@ -24,12 +23,10 @@ frmChangePass.onsubmit = (e) => {
   })
     .then(r => r.json())
     .then(r => {
-      msg.innerHTML = `<div class="alert alert-dark" role="alert">${r.msg}</div>`
+      msg.innerHTML = `<div class="alert alert-dark" role="alert"><i class="fas fa-info-circle"></i> ${r.msg}</div>`
     })
     .catch(e => {
-      console.log(e);
-      
-      msg.innerHTML = `<div class="alert alert-dark" role="alert">${r.msg}</div>`
+      msg.innerHTML = `<div class="alert alert-danger" role="alert"><i class="fas fa-info-circle"></i> ${r.msg}</div>`
     })
   return false
 }

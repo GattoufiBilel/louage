@@ -10,9 +10,7 @@ var multer = require('multer'), storage = multer.memoryStorage(), upload = multe
 var sharp = require('sharp')
 
 router.get('/profile', checkUserConnected, async (req, res) => {
-  let { id } = req.session.userInfo
-
-  const users = await utilisateurDao.getUserById(id)
+  const users = await utilisateurDao.getUserById(req.session.userInfo.id)
   let encode = 'data:image/png;base64,' + users[0].avatar
   req.session.avatar = encode
   res.render('client/profile/index', { user: users[0], avatar: encode })
@@ -24,12 +22,8 @@ router.post('/profile', checkUserConnected, (req, res) => {
   let User = new UtilisateurModel(nom, prenom, email, '', tel)
 
   utilisateurDao.updateUser(id, objectTrim(User))
-    .then(r => {
-      res.json({
-        msg: 'Votre profile a été bien modifiée'
-      });
-    })
-    .catch(e => { res.json({ msg: 'erreur de modification!' }); })
+    .then(r => { res.json({ msg: 'Votre profile a été bien modifiée' }) })
+    .catch(e => { res.json({ msg: 'erreur de modification!' }) })
 })
 
 /** user change password */
@@ -58,9 +52,7 @@ router.post('/profile/avatar', [checkUserConnected, upload.single("avatar")], (r
     .jpeg()
     .toBuffer()
     .then(function (data) {
-
       const encoded = data.toString("base64")
-
       utilisateurDao.updateAvatar(encoded, req.session.userInfo.email)
         .then(r => { res.redirect('/utilisateur/profile') })
         .catch(e => { res.render('client/profile/index', { msg: 'Erreur de modification' }) })

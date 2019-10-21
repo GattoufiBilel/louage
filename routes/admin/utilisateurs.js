@@ -34,7 +34,7 @@ router.post('/ajout', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
             })
         })
         .catch(e => {
-          res.render('admin/utilisateur/ajout', { msg: 'Utilisateur deja existe' })
+          res.render('admin/utilisateur/ajout', { msg: 'Utilisateur deja existe', e: 'error' })
         })
     })
     .catch(errHash => { res.redirect('/404') })
@@ -45,8 +45,7 @@ router.post('/modifier', [checkUserConnected, checkUserRoleAdmin], (req, res) =>
 })
 
 router.get('/supprimer', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
-  let { email } = req.query
-  utilisateurDao.deleteUserByEmail(email)
+  utilisateurDao.deleteUserByEmail(req.query.email)
     .then(r => { res.status(200).json({ msg: 'Un utilisateur a été bien supprimer' }) })
     .catch(e => { res.status(404).json({ msg: 'vous ne pouvez pas supprimer cet utilisateur' }) })
 })

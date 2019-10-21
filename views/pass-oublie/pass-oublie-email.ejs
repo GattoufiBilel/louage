@@ -14,9 +14,7 @@
       <div>
         </p>
         <div class="alert alert-danger mx-400" id="form-signin" role="alert">alter</div>
-        <% if(locals.msg) { %>
-        <div class="alert alert-danger mt-0 mx-400" role="alert"><%= msg %></div>
-        <% } %>
+        <% include('../snackbar.ejs') %>
       </div>
     </form>
   </div>

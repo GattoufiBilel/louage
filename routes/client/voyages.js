@@ -16,10 +16,7 @@ router.post('/', (req, res) => {
           v.nom_station === nomstation && v.arrive === arrive && v.date_depart === date
         )
       }
-      else {
-        voyages = values[0].filter(v => v.nom_station === nomstation && v.date_depart >= date)
-      }
-
+      else { voyages = values[0].filter(v => v.nom_station === nomstation && v.date_depart >= date) }
       res.render('client/voyages', { voyages, stations: values[1] })
     })
     .catch(e => { res.render('client/voyages') })

@@ -51,7 +51,7 @@ router.post('/', isConnected, function (req, res) {
           })
         })
         .catch(e => {
-          res.render('register', { msg: 'Vous êtes deja inscrit!' })
+          res.render('register', { msg: 'Vous êtes deja inscrit!', e: 'error' })
         })
     })
     .catch(errHash => { res.redirect('/404') });
@@ -66,10 +66,10 @@ router.post('/email/validation', isConnected, (req, res) => {
     if (!err) {
       knex('utilisateurs').where({ email: decoded.email }).update({ etat_email: 1 })
         .then(r => { res.redirect('/login') })
-        .catch(e => { res.render('register-valider', { msg: 'Erreur de validation clé secret' }) })
+        .catch(e => { res.render('register-valider', { msg: 'Erreur de validation clé secret', e: 'error' }) })
     }
     else {
-      res.render('register-valider', { msg: 'Clé n\'est pas valide! veuillez vérifier votre boîte de réception', c: 0 })
+      res.render('register-valider', { msg: 'Clé n\'est pas valide! veuillez vérifier votre boîte de réception', e: 'error' })
     }
   })
 })

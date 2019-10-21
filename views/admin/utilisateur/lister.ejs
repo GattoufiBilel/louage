@@ -28,7 +28,7 @@
             <td><%= u.nom ? u.nom : '-' %></td>
             <td><%= u.prenom ? u.prenom : '-' %></td>
             <td><%= u.email %></td>
-            <td><%= u.etat_email === 1 ? 'activer' : 'non activer' %></td>
+            <td><%= u.etat_email === 1 ? 'Activer' : 'Inactive' %></td>
             <td><%= u.tel ? u.tel : '-' %></td>
             <td><%= u.role %></td>
             <td><%= new Date(u.timestamp_utilisateur).toString().slice(0,24) %></td>
