@@ -7,9 +7,7 @@ var bcrypt = require('bcrypt'), saltRounds = 10;
 
 var checkUserExist = require('../middleware/checkUserExist')
 
-router.get('/', isConnected, (req, res) => {
-  res.render('pass-oublie/pass-oublie-email')
-})
+router.get('/', isConnected, (req, res) => { res.render('pass-oublie/pass-oublie-email') })
 
 router.post('/', [isConnected, checkUserExist], (req, res) => {
   let { email } = req.body, token = jwt.sign({ email }, 'shhhhh')
@@ -25,13 +23,15 @@ router.post('/', [isConnected, checkUserExist], (req, res) => {
   let mailOptions = {
     from: `"Louage 👻" <${process.env.EMAIL}>`,
     to: email.trim(),
-    subject: 'Réinitialiser le mot de passe, envoyé par Louage.com',
+    subject: 'Réinitialiser de mot de passe, envoyé par Louage.com',
     text: 'Merci de valider votre email',
     html: `
-        <div><img src="https://i.ibb.co/K7KK032/logo.png" alt="logo" ></div>
-        <h2>Votre clé secret : </h2>
-        <h3> ${token}</h3>
-        <div><small>louage.com</small></div>`
+    <div><img src="https://i.ibb.co/K7KK032/logo.png" alt="logo" ></div>
+    <h3>Clé secrete de réinitialiser de mot de passe: </h3>
+    <hr>
+    <h3>${token}</h3>
+    <hr>
+    <div><small>louage.com</small></div>`
   }
 
   transporter.sendMail(mailOptions, function (errMail, info) {

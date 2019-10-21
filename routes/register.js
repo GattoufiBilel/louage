@@ -24,9 +24,9 @@ router.post('/', isConnected, function (req, res) {
         password: hash, role: 'client',
         timestamp_utilisateur: new Date().toISOString()
       })
-        .then(result => {
+        .then(r => {
           let token = jwt.sign({ email }, 'shhhhh')
-
+          let d = req.protocol + "://" + req.headers.host;
           let transporter = nodemailer.createTransport({
             service: 'zoho',
             host: 'smtp',
@@ -38,17 +38,21 @@ router.post('/', isConnected, function (req, res) {
           let mailOptions = {
             from: `"Louage 👻" <${process.env.EMAIL}>`,
             to: email.trim(),
-            subject: 'Clé de validation, envoyé par Louage.com',
-            text: 'Merci de valider votre email',
+            subject: 'Clé d\'activation, envoyé par Louage.com',
+            text: 'Merci de valider votre inscription',
             html: `
+            <h3>Clé d'activation, envoyé par Louage.com</h3>
             <div><img src="https://i.ibb.co/K7KK032/logo.png" alt="logo" ></div>
-            <h4>Votre clé secret : </h4>
-            <h3> ${token}</h3>
+            <p>Cliquez sur ce lien pour activer votre compte</p>
+            <hr>
+            <p>${d}/register/email/activation?key=${token}</p>
+            <hr>
+            <p>Merci et bonne journée.</p>
             <div><small>https://louage.herokuapp.com</small></div>`
           }
 
           transporter.sendMail(mailOptions, function (errMail, info) {
-            res.redirect('/register/email/validation')
+            res.render('register', { msg: 'Un lien a été envoyé vers ton email, veuillez vérifier votre boîte de réception.' })
           })
         })
         .catch(e => {
@@ -58,19 +62,19 @@ router.post('/', isConnected, function (req, res) {
     .catch(errHash => { res.redirect('/404') });
 })
 
-router.get('/email/validation', isConnected, (req, res) => {
+router.get('/email', isConnected, (req, res) => {
   res.render('register-valider')
 })
 
-router.post('/email/validation', isConnected, (req, res) => {
-  jwt.verify(req.body.key, 'shhhhh', function (err, decoded) {
+router.get('/email/activation', isConnected, (req, res) => {  
+  jwt.verify(req.query.key, 'shhhhh', function (err, decoded) {
     if (!err) {
       knex('utilisateurs').where({ email: decoded.email }).update({ etat_email: 1 })
         .then(r => { res.redirect('/login') })
-        .catch(e => { res.render('register-valider', { msg: 'Clé secrete invalide', e: 'error' }) })
+        .catch(e => { res.render('register-valider', { msg: 'Clé secrete invalide.', e: 'error' }) })
     }
     else {
-      res.render('register-valider', { msg: 'Clé n\'est pas valide! veuillez vérifier votre boîte de réception', e: 'error' })
+      res.render('register-valider', { msg: 'Clé n\'est pas valide! veuillez vérifier votre boîte de réception.', e: 'error' })
     }
   })
 })

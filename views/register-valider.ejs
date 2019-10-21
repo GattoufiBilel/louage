@@ -3,15 +3,12 @@
 <link rel="stylesheet" href="/stylesheets/auth.css">
 <div class="container-fluid p-0 m-0">
   <div class="auth">
-    <form action="/register/email/validation" method="POST" class="mx-400 w-100">
+    <form class="mx-400 w-100">
       <h1 class="text-left mb-3">CONFIRMER VOTRE EMAIL</h1>
       <hr>
       <div class="form-group">
-        <label for="key">clé secrete</label>
-        <input type="text" id="key" name="key" class="form-control" placeholder="Entrer vote clé secrete" required>
-        <small class="form-text text-muted">Veuillez vérifier votre boîte de réception</small>
+          <div class="alert alert-danger mx-400" role="alert">Veuillez vérifier votre boîte de réception</div>
       </div>
-      <button class="btn btn-lg btn-success btn-block mt-3 mb-3 font-s14" type="submit">Confirmer</button>
       <div>
         <% if(locals.msg) { %>
         <% if(locals.e && locals.e.length >2) { %>
