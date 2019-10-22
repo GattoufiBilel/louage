@@ -29,11 +29,6 @@ window.addEventListener('load', () => {
       })
         .then(r => r.json())
         .then(r => {
-console.log(r);
-
-Push.create('Hello World!')
-
-          
           msgAlert.innerHTML = `<div class="alert alert-dark" role="alert"><i class="fas fa-info-circle"></i> ${r.msg}</div>`;
           formAjoutNotif.reset()
         })

@@ -26,6 +26,7 @@
     "nodemailer": "^6.3.0",
     "request": "^2.88.0",
     "sharp": "^0.23.0",
+    "socket.io": "^2.3.0",
     "sqlstring": "^2.3.1",
     "uniqid": "^5.0.3"
   },
