@@ -15,34 +15,38 @@ if (btnNotif) {
 }
 
 window.addEventListener('load', () => {
-  document.getElementById('form-ajout-notif').onsubmit = (e) => {
-    e.preventDefault()
-    let sujet = e.target.sujet.value;
-    let msg = e.target.msg.value;
-    let msgAlert = document.getElementById('msg-notif')
-    fetch('/chefstation/notifications/envoyer', {
-      method: 'POST',
-      headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-      body: JSON.stringify({ sujet, msg })
-    })
-      .then(r => r.json())
-      .then(r => {
-        if(!r.e) {
-          Push.create(sujet, {
-            body: message,
-            icon: '../../img/logo.png',
-            timeout: 4000,
-            onClick: function () {
-                window.focus();
-                this.close();
-            }
-        });
-        }
-        msgAlert.innerHTML = `<div class="alert alert-dark" role="alert"><i class="fas fa-info-circle"></i> ${r.msg}</div>`
+  let formAjoutNotif = document.getElementById('form-ajout-notif')
+  if(formAjoutNotif) {
+    formAjoutNotif.onsubmit = (e) => {
+      e.preventDefault()
+      let sujet = e.target.sujet.value;
+      let msg = e.target.msg.value;
+      let msgAlert = document.getElementById('msg-notif')
+      fetch('/chefstation/notifications/envoyer', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sujet, msg })
       })
-      .catch(e => {
-        msgAlert.innerHTML = `<div class="alert alert-danger" role="alert"><i class="fas fa-info-circle"></i> ${e.msg}</div>`
-      })
-    return false
+        .then(r => r.json())
+        .then(r => {
+          if(!r.e) {
+            Push.create(sujet, {
+              body: message,
+              icon: '../../img/logo.png',
+              timeout: 4000,
+              onClick: function () {
+                  window.focus();
+                  this.close();
+              }
+          });
+          }
+          msgAlert.innerHTML = `<div class="alert alert-dark" role="alert"><i class="fas fa-info-circle"></i> ${r.msg}</div>`;
+          formAjoutNotif.reset()
+        })
+        .catch(e => {
+          msgAlert.innerHTML = `<div class="alert alert-danger" role="alert"><i class="fas fa-info-circle"></i> ${e.msg}</div>`
+        })
+      return false
+    }
   }
 })
