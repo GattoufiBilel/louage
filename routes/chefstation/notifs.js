@@ -18,7 +18,7 @@ router.post('/envoyer', [checkUserConnected, checkUserRoleChef], (req, res) => {
   let { nom_station } = req.session.chefStationInfo
   let { sujet, msg } = req.body
   notifsDao.addNotification(new Notification(sujet, msg, nom_station, id))
-    .then(r => { res.json({ msg: 'Votre notification a été bien envoyé' }) })
+    .then(r => { res.json({ msg: 'Notification a été bien envoyée' }) })
     .catch(e => { res.json({ msg: 'Erreur d\'envoie, réessayez plus tard', e: 'error' }) })
 })
 
@@ -29,11 +29,11 @@ router.get('/modifier', [checkUserConnected, checkUserRoleChef], (req, res) => {
 })
 
 router.post('/modifier', [checkUserConnected, checkUserRoleChef], (req, res) => {
-  let { sujet, message, idnotif } = req.body
-  let notif = new Notification(sujet, message, '', '')
+  let { sujet, msg, idnotif } = req.body
+  let notif = new Notification(sujet, msg, '', '')
   notifsDao.updateNotification(notif, idnotif)
-    .then(r => { res.redirect('/chefstation/notifications') })
-    .catch(e => { res.redirect('/chefstation/notifications') })
+    .then(r => { res.json({ msg: 'Notification a été bien modifiée' }) })
+    .catch(e => { res.json({ msg: 'Erreur d\'envoie' }) })
 })
 
 router.get('/supprimer', [checkUserConnected, checkUserRoleChef], (req, res) => {

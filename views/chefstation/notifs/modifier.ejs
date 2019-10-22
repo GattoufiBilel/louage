@@ -4,13 +4,11 @@
   <div class="container">
     <%- include('../navbar') -%>
     <% if(locals.notification) { %>
-    <form action="/chefstation/notifications/modifier" method="POST" class="form-general bg-light p-0 mb-3">
+    <form id="form-notif" class="form-notif bg-light p-0 mb-3">
       <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <input type="text" class="form-control" id="idnotif" name="idnotif" value="<%= notification.id %>" required
-              hidden readonly>
-          </div>
+        <div class="col-md-6">          
+            <input type="text" class="form-control" name="idnotif" value="<%= notification.id %>" required
+              hidden readonly>          
 
           <div class="form-group">
             <label for="sujet">Sujet</label>
@@ -20,9 +18,8 @@
 
         <div class="col-md-6">
           <div class="form-group">
-            <label for="message">Message</label>
-            <textarea class="form-control" id="message" name="message" rows="7"
-              required><%= notification.message %></textarea>
+            <label for="msg">Message</label>
+            <textarea class="form-control" id="msg" name="msg" rows="7" required><%= notification.message %></textarea>
           </div>
         </div>
       </div>
@@ -30,8 +27,9 @@
       <button type="submit" class="btn btn-dark">modifier</button>
       <button type="reset" class="btn btn-danger">vider</button>
     </form>
-    <% } %>
-    <%- include('../../snackbar') -%>
+    <div id="msg-notif"></div>
+    <% } %>    
   </div>
 </div>
+<script src="/javascripts/pages/notification.js" defer></script>
 <%- include('../../partials/footer.ejs') -%>

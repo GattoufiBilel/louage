@@ -111,6 +111,7 @@ a {
   box-shadow: 0 0px 10px 2px #00000052;
 }
 
+.form-notif,
 #form-pass,
 .form-profile,
 .form-desac,
@@ -386,6 +387,7 @@ textarea {
     height: 300px;
   }
 
+  .form-notif,
   #form-pass,
   .form-profile,
   .form-desac,
