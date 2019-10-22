@@ -18,8 +18,8 @@ router.post('/envoyer', [checkUserConnected, checkUserRoleChef], (req, res) => {
   let { nom_station } = req.session.chefStationInfo
   let { sujet, msg } = req.body
   notifsDao.addNotification(new Notification(sujet, msg, nom_station, id))
-    .then(r => { res.render('chefstation/notifs/ajout', { msg: 'Votre notification a été bien enovyé' }) })
-    .catch(e => { res.render('chefstation/notifs/ajout', { msg: 'Erreur d\'envoie, réessayez plus tard', e: 'error' }) })
+    .then(r => { res.json({ msg: 'Votre notification a été bien envoyé' }) })
+    .catch(e => { res.json({ msg: 'Erreur d\'envoie, réessayez plus tard', e: 'error' }) })
 })
 
 router.get('/modifier', [checkUserConnected, checkUserRoleChef], (req, res) => {
