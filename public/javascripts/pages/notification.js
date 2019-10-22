@@ -29,17 +29,11 @@ window.addEventListener('load', () => {
       })
         .then(r => r.json())
         .then(r => {
-          if(!r.e) {
-            Push.create(sujet, {
-              body: message,
-              icon: '../../img/logo.png',
-              timeout: 4000,
-              onClick: function () {
-                  window.focus();
-                  this.close();
-              }
-          });
-          }
+console.log(r);
+
+Push.create('Hello World!')
+
+          
           msgAlert.innerHTML = `<div class="alert alert-dark" role="alert"><i class="fas fa-info-circle"></i> ${r.msg}</div>`;
           formAjoutNotif.reset()
         })
