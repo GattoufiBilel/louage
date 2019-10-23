@@ -114,8 +114,6 @@
               </div>
             </div>
           </div>
-          <div class="g-recaptcha mb-3" data-callback="imNotARobot"
-            data-sitekey="6LdptrsUAAAAAHpWDCbQrgpSyPEJ46Jbu5_hPCih"></div>
           <button type="submit" class="btn btn-dark" id="btn-payment">vérifier et payer</button>
           <button type="reset" class="btn btn-danger">vider</button>
         </form>
@@ -124,19 +122,5 @@
   </div>
   <% } %>
 </div>
-
-<script defer>
-  let btnPayment = document.getElementById('btn-payment')
-  let datexp = document.getElementById('datexp')
-  if (btnPayment && datexp) {
-    btnPayment.disabled = true
-    datexp.onkeyup = () => {
-      if (datexp.value.length === 5 && /\d{2}\/\d{2}/g.test(datexp.value)) {
-        let d = datexp.value.split('/')
-        btnPayment.disabled = +d[1] > 14 && +d[0] > 0 && +d[0] < 13 ? false : true
-      }
-      else { btnPayment.disabled = true }
-    }
-  }
-</script>
+<script src="/javascripts/pages/paiement.js" defer></script>
 <%- include('../partials/footer.ejs') -%>

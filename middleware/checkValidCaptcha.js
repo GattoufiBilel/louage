@@ -1,7 +1,6 @@
 var request = require('request')
 module.exports = function checkValidCaptcha (req, res, next) {
   let { originalUrl } = req
-  let rendPage = originalUrl.split('/').includes('payments') ? 'payments' : 'contact'
 
   let captcha = req.body['g-recaptcha-response']
 
@@ -16,7 +15,7 @@ module.exports = function checkValidCaptcha (req, res, next) {
 
   request.post(options, function (err, response, body) {
     if (err || !body.success) {
-      res.render(rendPage, { msg: "Captcha invalide!" })
+      res.render('contact', { msg: "Captcha invalide!" })
     }
     next()
   })

@@ -107,10 +107,6 @@ a {
   padding: 20px;
 }
 
-.table {
-  box-shadow: 0 0px 10px 2px #00000052;
-}
-
 .form-notif,
 #form-pass,
 .form-profile,
@@ -189,10 +185,6 @@ th {
   color: #ffffff !important;
   background-color: #1f2532 !important;
   border-radius: 0;
-}
-
-.box-light {
-  box-shadow: 1px 1px 12px 13px rgb(224, 224, 224);
 }
 
 .mx-400 {
