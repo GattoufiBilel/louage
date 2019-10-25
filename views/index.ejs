@@ -7,15 +7,12 @@
       background-color: #00000063;
       padding: 30px;
       border-radius: 5px;
+      margin-top: -30px;
     }
 
     .search-form i {
-      color: #fff;
+      color:#525252; position: absolute; left: 17px; bottom: 11px;
     }
-
-    .search-form label {
-      color: #fff;
-    }    
   </style>
   <div class="jumbotron container-v50">
     <div class="container mb-0 py-5">
@@ -30,23 +27,19 @@
         </div>
         <div class="col-md-6">
           <form action="/voyages" class="search-form" method="POST">
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="select-stations-i"><i class="fas fa-street-view"></i> DE</label>
-                  <select class="custom-select" id="select-stations-i" name="nomstation"></select>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="select-stations-iv"><i class="fa fa-map-marker"></i> VERS</label>
-                  <select class="custom-select" id="select-stations-iv" name="arrive"></select>
-                </div>
-              </div>
+
+            <div class="form-group position-relative">
+              <i class="fas fa-street-view"></i>
+              <select class="custom-select pl-5" id="select-stations-i" name="nomstation"></select>
             </div>
 
             <div class="form-group position-relative">
-              <i class="fa fa-calendar" style="color:#525252; position: absolute; left: 17px; bottom: 11px;"></i>
+              <i class="fa fa-map-marker"></i>
+              <select class="custom-select pl-5" id="select-stations-iv" name="arrive"></select>
+            </div>
+
+            <div class="form-group position-relative">
+              <i class="fa fa-calendar"></i>
               <input type="date" class="form-control pl-5" id="date-s" name="date" placeholder="Entrer date">
             </div>
 
