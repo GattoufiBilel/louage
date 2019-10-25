@@ -3,6 +3,6 @@ module.exports = class StationModel {
     this.nomStation = nomStation.toLowerCase() || '';
     this.ville = ville.toLowerCase() || '';
     this.tel = tel || '';
-    this.chefStation = chefStation || '';
+    this.chefStation = chefStation.toLowerCase() || '';
   }
 }

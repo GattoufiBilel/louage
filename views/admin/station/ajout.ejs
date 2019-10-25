@@ -21,16 +21,22 @@
           required>
       </div>
 
-      <div class="form-group">
-        <label for="ville">ville</label>
-        <input type="text" class="form-control" id="ville" name="ville" pattern="[a-zA-Z ]+" placeholder="Enter ville"
-          required>
-      </div>
-
-      <div class="form-group">
-        <label for="tel">tel</label>
-        <input type="tel" class="form-control" minlength="8" maxlength="8" id="tel" name="tel"
-          placeholder="Enter tel station" required>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ville">ville</label>
+            <select class="form-control" id="ville" name="ville">
+              <% villeTunisie.forEach(v=> { %><option value="<%= v %>"><%= v %></option><% }) %>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="tel">tel</label>
+            <input type="tel" class="form-control" minlength="8" maxlength="8" id="tel" name="tel"
+              placeholder="Enter tel station" required>
+          </div>
+        </div>
       </div>
 
       <button type="submit" class="btn btn-dark">Ajouter station</button>

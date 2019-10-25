@@ -20,15 +20,20 @@
         <input type="text" class="form-control" id="nom" name="nom" value="<%= station.nom_station %>" required>
       </div>
 
-      <div class="form-group">
-        <label for="ville">ville</label>
-        <input type="text" class="form-control" id="ville" name="ville" value="<%= station.ville %>" required>
-      </div>
-
-      <div class="form-group">
-        <label for="tel">tel</label>
-        <input type="tel" class="form-control" id="tel" name="tel" minlength="8" maxlength="8"
-          value="<%= station.station_tel %>" required>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="ville">ville</label>
+            <input type="text" class="form-control" id="ville" name="ville" value="<%= station.ville %>" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="tel">tel</label>
+            <input type="tel" class="form-control" id="tel" name="tel" minlength="8" maxlength="8"
+              value="<%= station.station_tel %>" required>
+          </div>
+        </div>
       </div>
 
       <button type="submit" class="btn btn-dark">modifier station</button>
