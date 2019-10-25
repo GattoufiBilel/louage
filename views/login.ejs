@@ -28,10 +28,8 @@
         <div class="alert alert-danger mt-0 mx-400" role="alert"><%= msg %></div>
         <% } %>
 
-        <% if(locals.msg && locals.c) { %>
-        <div class="alert alert-dark mt-0 mx-400" role="alert">
-          <%= msg %> <a href="/register/email/validation">lien de validation</a>
-        </div>
+        <% if(locals.msg && locals.c && !locals.e) { %>
+        <div class="alert alert-dark mt-0 mx-400" role="alert"><%= msg %></div>
         <% } %>
       </div>
     </form>

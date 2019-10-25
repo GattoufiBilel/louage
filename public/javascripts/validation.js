@@ -57,7 +57,7 @@ if (formRegister) {
     let email = e.target.email.value;
     let pass = e.target.password.value;
 
-    if (isPureStr(email) && isPureStr(pass) && isTrueProvider(email)) { return true }
+    if (isPureStr(email) && isPureStr(pass)) { return true }
     else {
       e.preventDefault()
       let msgForm = document.querySelector('#form-signin')
