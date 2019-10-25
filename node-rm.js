@@ -3,7 +3,7 @@ var { rmSpacesComments, readFiles, getFiles, writeOrCreateFile } = require('node
 let cssFiles = [
   './public/stylesheets/style.css',
   './public/stylesheets/datatable.css',
-  './public/stylesheets/animation.css']
+  './public/stylesheets/animation.css'];
 let content = readFiles(cssFiles)
 
 writeOrCreateFile(rmSpacesComments(content), './public/stylesheets/bundle.css')
