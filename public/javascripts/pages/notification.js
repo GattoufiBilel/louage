@@ -44,7 +44,7 @@ window.addEventListener('load', () => {
             }
             else {
               formNotif.reset()
-              setTimeout(() => { location.reload() }, 2000)
+              setTimeout(() => { location.reload() }, 4000)
             }
           })
           .catch(e => {
