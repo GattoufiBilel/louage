@@ -22,7 +22,7 @@ router.get('/ajout', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
 
 router.post('/ajout', [checkUserConnected, checkUserRoleAdmin], (req, res) => {
   let { chef, nom, ville, tel } = req.body
-  let station = new Station(nom, ville, tel, chef)
+  let station = new Station(nom.toLowerCase(), ville.toLowerCase(), tel, chef.toLowerCase())
   stationDao.addStation(station)
     .then(r => {
       res.render('admin/station/ajout', { msg: 'une station a été bien ajoutée' })

@@ -1,6 +1,4 @@
 var knex = require('../database/knex')
-// const db = require('../database/connection')
-// var SqlString = require('sqlstring')
 
 const table = {
   name: 'vehicules',

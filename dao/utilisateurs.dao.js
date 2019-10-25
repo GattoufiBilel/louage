@@ -19,18 +19,14 @@ const table = {
 const UtilisateurDao = {
 
   addUser (User) {
-    let { email, password, role } = User
-
-    const rq = `INSERT INTO ${table.name} 
-    (${table.email}, ${table.password}, ${table.role}, ${table.timestamp}) values(?, ? , ?, ?)`;
-
-    const sql = SqlString.format(rq, [email, password, role, new Date().toISOString()]);
-
-    return new Promise((resolve, reject) => {
-      db.query(sql, (err, result) => {
-        if (err) reject(err)
-        else resolve(result)
-      })
+    let { nom, prenom, email, password, role } = User
+    return knex(table.name).insert({
+      nom,
+      prenom,
+      email,
+      password,
+      role,
+      timestamp_utilisateur: new Date().toISOString()
     })
   },
   updateEtat (email) {

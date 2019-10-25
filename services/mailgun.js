@@ -2,7 +2,7 @@ var mailgun = require("mailgun-js")
 module.exports = (function (nom, email, sujet, message) {
   return new Promise((resolve, reject) => {
     let data = {
-      from: `Louage : ${nom} <${email}>`,
+      from: `Louage : ${nom} <${email.toLowerCase()}>`,
       to: "haikel.fazzani@zoho.com",
       subject: sujet,
       text: message

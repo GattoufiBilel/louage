@@ -30,7 +30,7 @@ router.get('/ajout', [checkUserConnected, checkUserRoleChef], (req, res) => {
 
 router.post('/ajout', [checkUserConnected, checkUserRoleChef], (req, res) => {
   let { id_station, vehicule, arrive, heureDepart, heureArrive, dateDepart, prixPlace, nbPlaces } = req.body
-  let newVoyage = new Voyage(uniqid(), arrive, heureDepart, heureArrive, dateDepart, prixPlace, nbPlaces, id_station, vehicule)
+  let newVoyage = new Voyage(uniqid(), arrive.toLowerCase(), heureDepart, heureArrive, dateDepart, prixPlace, nbPlaces, id_station, vehicule)
   voyagesDao.addVoyage(newVoyage)
     .then(r => { res.redirect('/chefstation/voyages') })
     .catch(e => { res.render('chefstation/voyage/ajout', { msg: 'erreur d\'ajout', e: 'error' }) })
