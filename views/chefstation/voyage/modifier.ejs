@@ -3,7 +3,7 @@
 <div class="container-fluid py-6">
   <div class="container">
     <%- include('../navbar') -%>
-    <form action="/chefstation/voyages/modifier" method="POST" class="form-general form-bg-gray mb-3">
+    <form action="/chefstation/voyages/modifier" method="POST" id="form-voyage" class="form-bg-gray mb-3">
       <input type="text" name="uidvoyage" id="uidvoyage" value="<%= voyage.uid_voyage %>" hidden readonly>
 
       <div class="form-group">
@@ -21,12 +21,12 @@
           </div>
         </div>
         <div class="col-md-4">
-            <div class="form-group">
-              <label for="heureArrive">heure d'arrivée</label>
-              <input type="number" class="form-control" id="heureArrive" min="0" max="24" name="heureArrive"
-                value="<%= voyage.heure_arrive %>" required>
-            </div>
+          <div class="form-group">
+            <label for="heureArrive">heure d'arrivée</label>
+            <input type="number" class="form-control" id="heureArrive" min="0" max="24" name="heureArrive"
+              value="<%= voyage.heure_arrive %>" required>
           </div>
+        </div>
         <div class="col-md-4">
           <div class="form-group">
             <label for="dateDepart">date de Départ</label>
@@ -40,7 +40,8 @@
         <div class="col-md-6">
           <div class="form-group">
             <label for="prixPlace">prix d'une place</label>
-            <input type="text" class="form-control" id="prixPlace" name="prixPlace" value="<%= voyage.prix_place %>" required>
+            <input type="text" class="form-control" id="prixPlace" name="prixPlace" value="<%= voyage.prix_place %>"
+              required>
           </div>
         </div>
         <div class="col-md-6">
@@ -51,15 +52,10 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="btn btn-dark" id="btn-ajout">mettre à jour voyage</button>
+      <button type="submit" class="btn btn-dark">mettre à jour voyage</button>
     </form>
+    <div class="alert alert-danger dnone" role="alert"></div>
   </div>
 </div>
-
-<script>
-  let btnAjout = document.getElementById('btn-ajout')
-  document.getElementById('prixPlace').onkeyup = (e) => {
-    btnAjout.disabled = +(e.target.value) > 0 ? false : true
-  }
-</script>
+<script src="/javascripts/pages/voyage.js" defer></script>
 <%- include('../../partials/footer.ejs') -%>

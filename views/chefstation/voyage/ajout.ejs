@@ -4,7 +4,7 @@
   <div class="container">
     <%- include('../navbar') -%>
     <% if(locals.vehicules) { %>
-    <form action="/chefstation/voyages/ajout" method="POST" class="form-general form-bg-gray mb-3">
+    <form action="/chefstation/voyages/ajout" method="POST" id="form-voyage" class="form-bg-gray mb-3">
       <input type="text" class="form-control" name="id_station" value="<%= id_station %>" hidden readonly>
 
       <div class="row">
@@ -15,20 +15,20 @@
           </div>
         </div>
         <div class="col-md-6">
-            <div class="form-group">
-                <label for="arrive">station d'arrivée</label>
-                <select class="form-control" id="arrive" name="arrive">
-                  <% stations.forEach(s=> { %><option value="<%= s.nom_station %>"><%= s.nom_station %></option><% }) %>
-                </select>
-              </div>
+          <div class="form-group">
+            <label for="arrive">station d'arrivée</label>
+            <select class="form-control" id="arrive" name="arrive">
+              <% stations.forEach(s=> { %><option value="<%= s.nom_station %>"><%= s.nom_station %></option><% }) %>
+            </select>
+          </div>
         </div>
-      </div>      
+      </div>
 
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
             <label for="prixPlace">prix d'une place</label>
-            <input type="text" class="form-control" id="prixPlace" name="prixPlace" placeholder="Enter prix place"
+            <input type="text" class="form-control" id="prixPlace" name="prixPlace" placeholder="Entrer prix d'une place"
               required>
           </div>
         </div>
@@ -36,34 +36,34 @@
           <div class="form-group">
             <label for="nbPlaces">nombre de Places</label>
             <input type="number" class="form-control" id="nbPlaces" min="1" max="32" name="nbPlaces"
-              placeholder="Enter nombre de places" required>
+              placeholder="Entrer nombre de places" required>
           </div>
         </div>
       </div>
 
       <div class="row">
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="heureDepart">heure de Départ</label>
-              <input type="number" class="form-control" id="heureDepart" name="heureDepart" min="1" max="24"
-                placeholder="Entrer l'heure de depart" required>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="heureArrive">heure d'arrivée</label>
-              <input type="number" class="form-control" id="heureArrive" name="heureArrive" min="1" max="24"
-                placeholder="Entrer l'heure d'arrivé" required>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="dateDepart">date de Départ</label>
-              <input type="date" class="form-control" id="dateDepart" name="dateDepart" placeholder="Entrer date depart"
-                required>
-            </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="heureDepart">heure de Départ</label>
+            <input type="number" class="form-control" id="heureDepart" name="heureDepart" min="1" max="24"
+              placeholder="Entrer l'heure de départ" required>
           </div>
         </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="heureArrive">heure d'arrivée</label>
+            <input type="number" class="form-control" id="heureArrive" name="heureArrive" min="1" max="24"
+              placeholder="Entrer l'heure d'arrivée" required>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="dateDepart">date de Départ</label>
+            <input type="date" class="form-control" id="dateDepart" name="dateDepart" placeholder="Entrer date départ"
+              required>
+          </div>
+        </div>
+      </div>
 
       <div class="form-group">
         <label>Vehicules</label>
@@ -74,19 +74,13 @@
         </datalist>
       </div>
 
-      <button type="submit" class="btn btn-dark" id="btn-ajout">Ajouter voyage</button>
+      <button type="submit" class="btn btn-dark">Ajouter voyage</button>
       <button type="reset" class="btn btn-danger">vider</button>
     </form>
+    <div class="alert alert-danger dnone" role="alert"></div>
     <% } %>
     <%- include('../../snackbar') -%>
   </div>
 </div>
-
-<script>
-  let btnAjout = document.getElementById('btn-ajout')
-  btnAjout.disabled = true
-  document.getElementById('prixPlace').onkeyup = (e) => {
-    btnAjout.disabled = +(e.target.value) > 0 ? false : true
-  }
-</script>
+<script src="/javascripts/pages/voyage.js" defer></script>
 <%- include('../../partials/footer.ejs') -%>

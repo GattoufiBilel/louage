@@ -4,7 +4,7 @@
   <div class="container">
     <%- include('../navbar') -%>
     <% if(locals.station && Object.keys(locals.station).length > 0) { %>
-    <form action="/admin/stations/modifier" method="POST" class="form-general form-bg-gray mb-3">
+    <form action="/admin/stations/modifier" method="POST" id="form-station" class="form-bg-gray mb-3">
       <div class="form-group">
         <input type="text" class="form-control" id="idstation" name="idstation" value="<%= station.id_station %>"
           required hidden readonly>
@@ -38,7 +38,9 @@
 
       <button type="submit" class="btn btn-dark">modifier station</button>
     </form>
+    <div class="alert alert-danger dnone" role="alert"></div>
     <% } %>
   </div>
 </div>
+<script src="/javascripts/pages/station.js" defer></script>
 <%- include('../../partials/footer.ejs') -%>

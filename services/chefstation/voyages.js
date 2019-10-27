@@ -20,6 +20,7 @@ function getVehiculesStation (req, res) {
   let { id_station, nom_station } = req.session.chefStationInfo
   Promise.all([vehiculeDao.getVehicules(), stationDao.getAllStations()])
     .then(v => {
+      v[1] = v[1].filter(v => v.nom_station !== nom_station)
       res.render('chefstation/voyage/ajout', { vehicules: v[0], stations: v[1], id_station, nom_station })
     })
     .catch(e => { res.redirect('/404') })
