@@ -2,6 +2,7 @@ var router = require('express').Router()
 var { isConnected } = require('../middleware/authorisation')
 var checkValidEmail = require('../middleware/checkValidEmail')
 var { sendReinitialiserEmail, getUserEmail, reinitialiser } = require('../services/pass-oublie')
+var jwt = require('jsonwebtoken')
 
 router.get('/', isConnected, (req, res) => { res.render('pass-oublie') })
 

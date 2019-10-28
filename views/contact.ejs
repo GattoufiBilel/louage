@@ -7,7 +7,7 @@
     <div class="text-center font-s18 mx-auto mb-2" style="max-width:500px">
       <p>Est-ce que quelque chose ne fonctionne pas ? n'hésitez pas à nous contacter.</p>
     </div>
-    <form action="/contact" method="POST" class="form-general bg-light p-0 mb-3">
+    <form action="/contact" method="POST" id="form-contact" class="form-general bg-light p-0 mb-3">
       <div class="row">
         <div class="col-md-6">
   
@@ -41,6 +41,7 @@
       <button type="submit" class="btn btn-dark" id="btn-send-mail">Envoyer</button>
       <button type="reset" class="btn btn-danger">vider</button>
     </form>
+    <div class="alert alert-danger dnone" role="alert"></div>
     <%- include('snackbar') -%>
   </div>
 </div>
