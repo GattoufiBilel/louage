@@ -11,4 +11,22 @@ window.addEventListener('load', () => {
     else { btnPayment.disabled = true }
   }
 
+  function checkPaiementInput (str) { return /^[0-9]+$/gi.test(str) }
+
+  let formPaiement = document.getElementById('form-paiement')
+  formPaiement.addEventListener('submit', (e) => {
+    let numcarte = e.target.numcarte.value;
+    let cvc = e.target.cvc.value;
+    if (checkPaiementInput(numcarte) && checkPaiementInput(cvc)) {
+      return true
+    }
+    e.preventDefault()
+    let alert = document.querySelector('[role=alert]')
+    alert.classList.remove('dnone')
+    alert.classList.add('dblock')
+    alert.textContent = 'Données invalides, n\'utilisez pas des caractères spéciaux dans les champs!'
+    setTimeout(() => { alert.classList.add('dnone') }, 5000)
+    return false
+  })
+
 })

@@ -73,7 +73,7 @@
       </div>
 
       <div class="col-md-6">
-        <form action="/payments/confirmer" method="POST" class="form-general form-bg-gray mb-3">
+        <form action="/payments/confirmer" method="POST" id="form-paiement" class="form-general form-bg-gray mb-3">
           <input type="text" name="uidvoyage" id="uidvoyage" value="<%= uidvoyage %>" required hidden readonly>
 
           <input type="text" class="form-control" id="nb_places" name="nb_places" value="<%= voyage.nb_places %>"
@@ -117,6 +117,7 @@
           <button type="submit" class="btn btn-dark" id="btn-payment">vérifier et payer</button>
           <button type="reset" class="btn btn-danger">vider</button>
         </form>
+        <div class="alert alert-danger dnone" role="alert"></div>
       </div>
     </div><!-- end row -->
   </div>
