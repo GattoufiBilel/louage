@@ -11,9 +11,7 @@ function getProfile (req, res) {
     req.session.avatar = encode
     res.render('compte/index', { user: users[0], avatar: encode })
   })
-    .catch(e => {
-      res.render('compte/index', { user: users[0] })
-    })
+    .catch(e => { res.render('compte/index', { user: users[0] }) })
 }
 
 function updateInfos (req, res) {

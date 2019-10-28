@@ -15,22 +15,24 @@ if (btnSend) {
   }
 }
 
-function checkContactInput (str) { return /^[a-z\xBF-\xFF ]+$/gi.test(str) }
+window.addEventListener('load', () => {
+  function checkContactInput (str) { return /^[a-z\xBF-\xFF ]+$/gi.test(str) }
 
-let formContact = document.getElementById('form-contact')
-formContact.addEventListener('submit', (e) => {
-  let nom = e.target.nom.value;
-  let sujet = e.target.sujet.value;
-  let email = e.target.email.value;
-  let message = e.target.message.value;
-  if (checkContactInput(nom.toLowerCase()) && checkContactInput(sujet)) {
-    return true
-  }
-  e.preventDefault()
-  let alert = document.querySelector('[role=alert]')
-  alert.classList.remove('dnone')
-  alert.classList.add('dblock')
-  alert.textContent = 'Données invalides, n\'utilisez pas des caractères spéciaux dans les champs!'
-  setTimeout(() => { alert.classList.add('dnone') }, 5000)
-  return false
+  let formContact = document.getElementById('form-contact')
+  formContact.addEventListener('submit', (e) => {
+    let nom = e.target.nom.value;
+    let sujet = e.target.sujet.value;
+    let email = e.target.email.value;
+    let message = e.target.message.value;
+    if (checkContactInput(nom.toLowerCase()) && checkContactInput(sujet)) {
+      return true
+    }
+    e.preventDefault()
+    let alert = document.querySelector('[role=alert]')
+    alert.classList.remove('dnone')
+    alert.classList.add('dblock')
+    alert.textContent = 'Données invalides, n\'utilisez pas des caractères spéciaux dans les champs!'
+    setTimeout(() => { alert.classList.add('dnone') }, 5000)
+    return false
+  })
 })

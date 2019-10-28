@@ -10,9 +10,7 @@ function sendReinitialiserEmail (req, res) {
       res.cookie('passoublieemail', email, { maxAge: 1000 * 60 * 5, httpOnly: true })
       res.redirect('/pass-oublie/reinitialiser')
     })
-    .catch(e => {
-      res.render('pass-oublie', { msg: 'Veillez vérifier votre email!', e: 'error' })
-    })
+    .catch(e => { res.render('pass-oublie', { msg: 'Veillez vérifier votre email!', e: 'error' }) })
 }
 
 function getUserEmail (req, res) {
